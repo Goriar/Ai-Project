@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\app\AIWindow.cpp">
+      <Filter>app</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\GlutWindow.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\app\main.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\SpriteComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\MoveComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mathutil\Vector.cpp">
+      <Filter>mathutil</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\ComponentContainer.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\CharacterManager.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Character.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Sprite.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\behaviour\Behaviour.cpp">
+      <Filter>behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="src\behaviour\Sequence.cpp">
+      <Filter>behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="src\behaviour\Selector.cpp">
+      <Filter>behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\PlayerMoveComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mathutil\Vector3.cpp">
+      <Filter>mathutil</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\app\AIWindow.h">
+      <Filter>app</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\GlutWindow.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\Component.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\SpriteComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\MoveComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\steering\Steering.h">
+      <Filter>steering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mathutil\Vector.h">
+      <Filter>mathutil</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\ComponentContainer.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\CharacterManager.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\Singleton.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\Character.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\Sprite.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\behaviour\Behaviour.h">
+      <Filter>behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="src\behaviour\BehaviourInterfaces.h">
+      <Filter>behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="src\app\globaldefs.h">
+      <Filter>app</Filter>
+    </ClInclude>
+    <ClInclude Include="src\behaviour\Sequence.h">
+      <Filter>behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="src\behaviour\Selector.h">
+      <Filter>behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\PlayerMoveComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mathutil\Vector3.h">
+      <Filter>mathutil</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="components">
+      <UniqueIdentifier>{3543070d-8035-41ba-a8f8-4234af49a453}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core">
+      <UniqueIdentifier>{131eb4c7-7d42-4c20-bdf3-56edf64035fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="app">
+      <UniqueIdentifier>{74c96240-d390-4c6c-89a2-e920479813ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GL">
+      <UniqueIdentifier>{467f02dc-83e7-41a4-b207-db4f1f6c4e4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mathutil">
+      <UniqueIdentifier>{682a40ec-4546-42b1-ae6e-d19760492b72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="steering">
+      <UniqueIdentifier>{cc22ab53-8611-4121-afa3-aa837abc9630}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="behaviour">
+      <UniqueIdentifier>{fb9d7589-7880-406e-8ef1-1e4e18b780fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tasks">
+      <UniqueIdentifier>{816f0a19-3ee3-46c7-874b-c35238561920}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
