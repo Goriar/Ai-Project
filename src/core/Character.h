@@ -2,6 +2,7 @@
 
 #include "components\ComponentContainer.h"
 #include "mathutil/Vector.h"
+#include "core\CharacterManager.h"
 #include <vector>
 using namespace std;
 
@@ -17,6 +18,8 @@ public:
 	void setPosition(const CVector &vec);
 	void setRotation(double v);   
 	void setSize(double s);
+	void setCharacterManager(CharacterManager *cm);
+	inline CharacterManager *getCharacterManager() const { return characterManager;}
 	inline double getSize() const { return size; }
 
 
@@ -33,6 +36,7 @@ protected:
 	CVector position;
 	double rotation;
 	double size;
+	CharacterManager *characterManager;
 
 	unsigned int tag;
 	string name;

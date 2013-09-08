@@ -1,5 +1,4 @@
 #include "core/Character.h"
-#include "core/CharacterManager.h"
 #include <math.h>
 #include <assert.h>
 #include <stdio.h>
@@ -25,3 +24,4 @@ Character::~Character() {
 void Character::setPosition(const CVector &vec)  {position = vec;  }
 void Character::setRotation(double v)            {rotation = v; }	
 void Character::setSize(double s)            {size = s; }	
+void Character::setCharacterManager(CharacterManager *cm){ characterManager = cm;}

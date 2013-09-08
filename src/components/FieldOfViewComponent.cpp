@@ -1,13 +1,12 @@
 #include "FieldOfViewComponent.h"
 
 
-FieldOfViewComponent::FieldOfViewComponent(CVector* mouse, CharacterManager *cm, Character *c)
+FieldOfViewComponent::FieldOfViewComponent(CVector* mouse, Character *c)
 {
 	parent = NULL;
 	attachToCharacter(c);
 	mousePosition = mouse;
 	fov = CVector(0,0);
-	characterManager = cm;
 	active = true;
 }
 
@@ -22,7 +21,7 @@ void FieldOfViewComponent::update(double deltaTime)
 	fov = *mousePosition - parent->getPosition();
 	double scale = MAX_VIEW_FIELD_LENGTH/fov.getLength();
 	fov = fov*scale;
-	vector<Character *> nearbyCharacters = characterManager->getAllNearbyCharacters(parent->getPosition(),GHOST_TAG,MAX_VIEW_FIELD_LENGTH+50.0);
+	vector<Character *> nearbyCharacters = parent->getCharacterManager()->getAllNearbyCharacters(parent->getPosition(),GHOST_TAG,MAX_VIEW_FIELD_LENGTH+50.0);
 
 	vector<Character *>::iterator it = nearbyCharacters.begin();
 

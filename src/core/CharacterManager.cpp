@@ -10,6 +10,7 @@ Character *CharacterManager::createCharacter(const string &name, unsigned int ta
 	if (characters.find(name) != characters.end()) return NULL;
 
 	Character *c = new Character(name,tag,size);
+	c->setCharacterManager(this);
 	characters[name] = c;
 
 	return c;

@@ -64,7 +64,7 @@ void AIWindow::createPlayer(){
 	SpriteComponent *sc = new SpriteComponent(player,sprite);
 
 	PlayerMoveComponent *pMovComp = new PlayerMoveComponent(keyStates,player);
-	FieldOfViewComponent *fovComponent = new FieldOfViewComponent(fov,cm,player);
+	FieldOfViewComponent *fovComponent = new FieldOfViewComponent(fov,player);
 
 	double x = 0.0;
 	double y = 0.0;

@@ -10,7 +10,7 @@
 class FieldOfViewComponent : public Component
 {
 public:
-	FieldOfViewComponent(CVector* mouse,CharacterManager *cm, Character *c = NULL);
+	FieldOfViewComponent(CVector* mouse, Character *c = NULL);
 	virtual ~FieldOfViewComponent(void);
 	virtual void update(double deltaTime);
 	virtual void draw();
@@ -23,6 +23,5 @@ protected:
 	CVector* mousePosition;
 	CVector fov;
 
-	CharacterManager *characterManager;
 };
 

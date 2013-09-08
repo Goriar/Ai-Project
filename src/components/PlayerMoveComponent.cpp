@@ -68,6 +68,8 @@ void PlayerMoveComponent::update(double deltaTime)
 	}
 
 
+
+
 	parent->setPosition(position);
 	parent->setRotation(rotation);
 }
