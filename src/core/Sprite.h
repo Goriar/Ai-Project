@@ -13,6 +13,7 @@ protected:
 	unsigned int texId;
 protected:
 	void loadTexture(const char* filename);
+	void loadTextureSOIL(const char* filename);
 	double size;
 
 };

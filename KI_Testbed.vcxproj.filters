@@ -111,6 +111,9 @@
     <ClInclude Include="src\components\FieldOfViewComponent.h">
       <Filter>components</Filter>
     </ClInclude>
+    <ClInclude Include="src\core\SOIL.h">
+      <Filter>core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="components">

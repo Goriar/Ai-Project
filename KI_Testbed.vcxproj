@@ -67,6 +67,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalDependencies>SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -123,6 +124,7 @@
     <ClInclude Include="src\core\Character.h" />
     <ClInclude Include="src\core\CharacterManager.h" />
     <ClInclude Include="src\core\Singleton.h" />
+    <ClInclude Include="src\core\SOIL.h" />
     <ClInclude Include="src\core\Sprite.h" />
     <ClInclude Include="src\mathutil\Vector.h" />
     <ClInclude Include="src\core\GlutWindow.h" />
