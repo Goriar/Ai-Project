@@ -15,6 +15,7 @@ public:
 
 	virtual void renderFrame();
 	virtual void keyEvent(unsigned char key,int x,int y);
+	virtual void keyUpEvent(unsigned char key,int x,int y);
 
 	virtual bool handleButtonEvent(int button, int state, int x, int y);
 	virtual bool handleMoveEvent(int x, int y);
@@ -25,6 +26,7 @@ protected:
 	Character *dragCharacter;
 	Character *player;
 	PlayerMoveComponent *pMovComp;
+	bool* keyStates;
 	BehaviourTree::Behaviour *behaviour;
 
 	void createBehaviour();

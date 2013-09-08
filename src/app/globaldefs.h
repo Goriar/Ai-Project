@@ -13,8 +13,8 @@
 #define CLAMP(a,b,c) { b = ((b) < (a))? (a) : (((b) > (c))? (c): (b));}
 
 #define PIXEL_PER_METER      (1.0)
-#define MAX_VELOCITY         (100.0)
-#define MAX_ACCEL            (100.0)
+#define MAX_VELOCITY         (200.0)
+#define MAX_ACCEL            (200.0)
 #define MAX_ANGULAR_VELOCITY (30.0)
 #define MAX_ANGULAR_ACCEL    (30.0)
 

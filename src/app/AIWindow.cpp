@@ -33,6 +33,8 @@ AIWindow::AIWindow()
 {
 	dragCharacter = NULL;
 	bDragging = false;
+	keyStates = new bool[256];
+	memset(keyStates,0,256);
 
 	createPlayer();
 	createBehaviour();
@@ -54,7 +56,7 @@ void AIWindow::createPlayer(){
 	Sprite *sprite = new Sprite("..\\input\\robot_7.raw");
 	SpriteComponent *sc = new SpriteComponent(player,sprite);
 
-	pMovComp = new PlayerMoveComponent(player);
+	pMovComp = new PlayerMoveComponent(keyStates,player);
 	
 }
 
@@ -108,34 +110,13 @@ bool AIWindow::handleMoveEvent(int x, int y) {
 }
 void AIWindow::keyEvent(unsigned char key,int x,int y){
 
-	switch (key) {
-		case 'w':
-		case 'W':
-			{
-				pMovComp->setAccel(CVector(0,100));
-			}
-			break;
-		case 'a':
-		case 'A':
-			{
-				pMovComp->setAccel(CVector(-100,0));
-			}
-			break;
-		case 's':
-		case 'S':
-			{
-				pMovComp->setAccel(CVector(0,-100));
-			}
-			break;
-		case 'd':
-		case 'D':
-			{
-				pMovComp->setAccel(CVector(100,0));
-			}
-			break;
-	}
+	keyStates[key] = true;
 
-	glutPostRedisplay();
+}
+
+void AIWindow::keyUpEvent(unsigned char key,int x,int y){
+
+	keyStates[key] = false;
 }
 
 

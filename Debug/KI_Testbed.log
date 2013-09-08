@@ -1,29 +1,17 @@
-﻿Der Buildvorgang wurde am 04.09.2013 18:10:30 gestartet.
-     1>Projekt "C:\Users\Kevin\Dropbox\KI\Ai von C\KI_Testbed.vcxproj" auf Knoten "2", build Ziel(e).
+﻿Der Buildvorgang wurde am 08.09.2013 04:17:30 gestartet.
+     1>Projekt "C:\Users\Goriar\Documents\GitHub\Ai-Project\KI_Testbed.vcxproj" auf Knoten "2", build Ziel(e).
      1>InitializeBuildStatus:
          "Debug\KI Testbed.unsuccessfulbuild" wird erstellt, da "AlwaysCreate" angegeben wurde.
        ClCompile:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Users\Kevin\Dropbox\KI\Ai von C\src\\" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt src\behaviour\Behaviour.cpp src\behaviour\Selector.cpp src\behaviour\Sequence.cpp src\components\ComponentContainer.cpp src\components\MoveComponent.cpp src\components\PlayerMoveComponent.cpp src\components\SpriteComponent.cpp src\core\Character.cpp src\core\CharacterManager.cpp src\core\Sprite.cpp src\mathutil\Vector.cpp src\core\GlutWindow.cpp src\app\main.cpp src\app\AIWindow.cpp src\mathutil\Vector3.cpp
-         Vector3.cpp
+         e:\Visual Studio 2010\VC\bin\CL.exe /c /I"C:\Users\Goriar\Documents\GitHub\Ai-Project\src\\" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt src\app\AIWindow.cpp src\components\PlayerMoveComponent.cpp
          AIWindow.cpp
-         main.cpp
-         GlutWindow.cpp
-         Vector.cpp
-         Sprite.cpp
-         CharacterManager.cpp
-         Character.cpp
-         SpriteComponent.cpp
-         PlayerMoveComponent.cpp
-         MoveComponent.cpp
-         ComponentContainer.cpp
-         Sequence.cpp
-         Selector.cpp
-         Behaviour.cpp
          Code wird generiert...
+         Überspringen... (keine relevanten Änderungen gefunden)
+         PlayerMoveComponent.cpp
        ManifestResourceCompile:
          C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\KI Testbed.exe.embed.manifest.res" "Debug\KI Testbed_manifest.rc" 
        Link:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Kevin\Dropbox\KI\Ai von C\bin\KI Testbed.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\Kevin\Dropbox\KI\Ai von C\lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\KI Testbed.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Kevin\Dropbox\KI\Ai von C\bin\KI Testbed.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Kevin\Dropbox\KI\Ai von C\bin\KI Testbed.lib" /MACHINE:X86 "Debug\KI Testbed.exe.embed.manifest.res"
+         e:\Visual Studio 2010\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Goriar\Documents\GitHub\Ai-Project\bin\KI Testbed.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\Goriar\Documents\GitHub\Ai-Project\lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\KI Testbed.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Goriar\Documents\GitHub\Ai-Project\bin\KI Testbed.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Goriar\Documents\GitHub\Ai-Project\bin\KI Testbed.lib" /MACHINE:X86 "Debug\KI Testbed.exe.embed.manifest.res"
          Debug\Behaviour.obj
          Debug\Selector.obj
          Debug\Sequence.obj
@@ -40,11 +28,10 @@
          Debug\AIWindow.obj
          Debug\Vector3.obj
        Manifest:
-         Die Datei "Debug\KI Testbed.exe.embed.manifest" wird gelöscht.
          C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\KI Testbed.exe.embed.manifest" /manifest "Debug\KI Testbed.exe.intermediate.manifest"
          C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\KI Testbed.exe.embed.manifest.res" "Debug\KI Testbed_manifest.rc" 
        LinkEmbedManifest:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Kevin\Dropbox\KI\Ai von C\bin\KI Testbed.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\Kevin\Dropbox\KI\Ai von C\lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\KI Testbed.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Kevin\Dropbox\KI\Ai von C\bin\KI Testbed.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Kevin\Dropbox\KI\Ai von C\bin\KI Testbed.lib" /MACHINE:X86 "Debug\KI Testbed.exe.embed.manifest.res"
+         e:\Visual Studio 2010\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Goriar\Documents\GitHub\Ai-Project\bin\KI Testbed.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\Goriar\Documents\GitHub\Ai-Project\lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\KI Testbed.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Goriar\Documents\GitHub\Ai-Project\bin\KI Testbed.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Goriar\Documents\GitHub\Ai-Project\bin\KI Testbed.lib" /MACHINE:X86 "Debug\KI Testbed.exe.embed.manifest.res"
          Debug\Behaviour.obj
          Debug\Selector.obj
          Debug\Sequence.obj
@@ -60,12 +47,12 @@
          Debug\main.obj
          Debug\AIWindow.obj
          Debug\Vector3.obj
-         KI_Testbed.vcxproj -> C:\Users\Kevin\Dropbox\KI\Ai von C\bin\KI Testbed.exe
+         KI_Testbed.vcxproj -> C:\Users\Goriar\Documents\GitHub\Ai-Project\bin\KI Testbed.exe
        FinalizeBuildStatus:
          Die Datei "Debug\KI Testbed.unsuccessfulbuild" wird gelöscht.
          Aktualisieren des Timestamps von "Debug\KI Testbed.lastbuildstate".
-     1>Die Erstellung des Projekts "C:\Users\Kevin\Dropbox\KI\Ai von C\KI_Testbed.vcxproj" ist abgeschlossen, build Ziel(e).
+     1>Die Erstellung des Projekts "C:\Users\Goriar\Documents\GitHub\Ai-Project\KI_Testbed.vcxproj" ist abgeschlossen, build Ziel(e).
 
 Das Erstellen war erfolgreich.
 
-Verstrichene Zeit 00:00:24.93
+Verstrichene Zeit 00:00:02.24

@@ -1,7 +1,7 @@
 #include "PlayerMoveComponent.h"
 #include "app\globaldefs.h"
 
-PlayerMoveComponent::PlayerMoveComponent(Character *c)
+PlayerMoveComponent::PlayerMoveComponent(bool *keys,Character *c)
 {
 	parent = NULL;
 	
@@ -9,7 +9,8 @@ PlayerMoveComponent::PlayerMoveComponent(Character *c)
 	accel.set(0.0,0.0);
 	angularVelo = 0.0;
 	angularAccel = 0.0;
-	accelSum.set(0,0);
+
+	keyStates = keys;
 
 	// init default maxima
 	maxVelocity        = MAX_VELOCITY;
@@ -28,8 +29,8 @@ PlayerMoveComponent::~PlayerMoveComponent(void)
 
 void PlayerMoveComponent::update(double deltaTime)
 {
+	determineDirection();
 	fov = mousePosition - parent->getPosition();
-	accel = accelSum;
 	velocity += deltaTime * accel;
 	if (velocity.getLength() > maxVelocity) {
 		velocity.normalize();
@@ -70,7 +71,60 @@ void PlayerMoveComponent::update(double deltaTime)
 
 	parent->setPosition(position);
 	parent->setRotation(rotation);
-	accelSum.set(0,0);
+}
+
+void PlayerMoveComponent::determineDirection(){
+	
+	if(keyStates['w'] || keyStates['W']){
+		if(keyStates['a'] || keyStates['A'])
+			setAccel(CVector(-MAX_ACCEL,MAX_ACCEL));
+		else if(keyStates['d'] || keyStates['D'])
+			setAccel(CVector(MAX_ACCEL,MAX_ACCEL));
+		else setAccel(CVector(0.0,MAX_ACCEL));
+		return;
+	}
+
+	if(keyStates['a'] || keyStates['A']){
+		if(keyStates['w'] || keyStates['W'])
+			setAccel(CVector(-MAX_ACCEL,MAX_ACCEL));
+		else if(keyStates['s'] || keyStates['S'])
+			setAccel(CVector(-MAX_ACCEL,-MAX_ACCEL));
+		else setAccel(CVector(-MAX_ACCEL,0));
+		return;
+	}
+
+	if(keyStates['s'] || keyStates['S']){
+		if(keyStates['d'] || keyStates['D'])
+			setAccel(CVector(MAX_ACCEL,-MAX_ACCEL));
+		else if(keyStates['a'] || keyStates['A'])
+			setAccel(CVector(-MAX_ACCEL,-MAX_ACCEL));
+		else setAccel(CVector(0,-MAX_ACCEL));
+		return;
+	}
+
+	if(keyStates['d'] || keyStates['D']){
+		if(keyStates['s'] || keyStates['S'])
+			setAccel(CVector(MAX_ACCEL,-MAX_ACCEL));
+		else if(keyStates['w'] || keyStates['W'])
+			setAccel(CVector(MAX_ACCEL,MAX_ACCEL));
+		else setAccel(CVector(MAX_ACCEL,0));
+		return;
+	}
+
+	if(velocity!=CVector(0,0)){
+		float x = 0.0;
+		float y = 0.0;
+		if(velocity[0]>0)
+			x = -MAX_ACCEL;
+		else
+			x = MAX_ACCEL;
+
+		if(velocity[1]>0)
+			y = -MAX_ACCEL;
+		else
+			y = MAX_ACCEL;
+		setAccel(CVector(x,y));
+	}
 }
 
 void PlayerMoveComponent::draw()
@@ -136,7 +190,7 @@ void PlayerMoveComponent::setVelocity(const CVector &vec)
 
 void PlayerMoveComponent::setAccel(const CVector &vec)
 {
-	accelSum += vec;
+	accel = vec;
 }
 
 void PlayerMoveComponent::setAngularVelocity(double v)

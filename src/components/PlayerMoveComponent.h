@@ -10,7 +10,7 @@ class PlayerMoveComponent : public Component
 {
 
 public:
-	PlayerMoveComponent(Character *c = NULL);
+	PlayerMoveComponent(bool *keys, Character *c = NULL);
 	virtual ~PlayerMoveComponent(void);
 	virtual void update(double deltaTime);
 	virtual void draw();
@@ -38,14 +38,14 @@ public:
 	void setMousePosition(CVector mouse);
 	bool pointInView(CVector p);
 	bool edgeSideTest(CVector3 p1,CVector3 p2, CVector3 a, CVector3 b);
+	void determineDirection();
 
 protected:
 	CVector mousePosition;
 	CVector velocity;
 	CVector accel;
-	CVector accelSum;
 	CVector fov;
-
+	bool* keyStates;
 	double angularVelo;
 	double angularAccel;
 	
