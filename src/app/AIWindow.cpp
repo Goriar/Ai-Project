@@ -35,6 +35,7 @@ AIWindow::AIWindow()
 	bDragging = false;
 	keyStates = new bool[256];
 	memset(keyStates,0,256);
+	fov = new CVector();
 
 	createPlayer();
 	createBehaviour();
@@ -56,7 +57,15 @@ void AIWindow::createPlayer(){
 	Sprite *sprite = new Sprite("..\\input\\robot_7.raw");
 	SpriteComponent *sc = new SpriteComponent(player,sprite);
 
-	pMovComp = new PlayerMoveComponent(keyStates,player);
+	PlayerMoveComponent *pMovComp = new PlayerMoveComponent(keyStates,player);
+	FieldOfViewComponent *fovComponent = new FieldOfViewComponent(fov,cm,player);
+
+	ghost = cm->createCharacter("Ghost",GHOST_TAG);
+	ghost->setPosition(CVector(nWidth/2,nHeight/2));
+
+	Sprite *sprite2 = new Sprite("..\\input\\robot_8.raw");
+	SpriteComponent *sc2 = new SpriteComponent(ghost,sprite);
+
 	
 }
 
@@ -105,7 +114,7 @@ bool AIWindow::handleMoveEvent(int x, int y) {
 	if ((bDragging) && (dragCharacter != NULL)) {
 		dragCharacter->setPosition(CVector(x,nHeight-y));
 	}
-	pMovComp->setMousePosition(CVector(x,nHeight-y));
+	fov->set(x,nHeight-y);
 	return false;
 }
 void AIWindow::keyEvent(unsigned char key,int x,int y){

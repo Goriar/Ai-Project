@@ -69,6 +69,28 @@ Character *CharacterManager::getNearestCharacter(CVector vec, unsigned int tag, 
 	return found;
 }
 
+vector<Character *> CharacterManager::getAllNearbyCharacters(CVector vec, unsigned int tag, double maxDistance) {
+
+	nearbyCharacters.clear();
+	map<string,Character*>::iterator it = characters.begin();
+	while(it != characters.end()) {
+
+		Character *c = it->second;
+		it++;
+
+		// check for tags
+		if ((tag != 0) && (c->getTag() != tag)) continue;
+		
+		// check for maxDistance
+		double dist = (c->getPosition() - vec).getLength();
+		if (dist > maxDistance) continue;
+
+		nearbyCharacters.push_back(c);
+	}
+
+	return nearbyCharacters;
+}
+
 Character *CharacterManager::getCharacter(string name) {
 	
 	map<string,Character*>::iterator it = characters.find(name);

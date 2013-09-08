@@ -3,6 +3,7 @@
 #include "mathutil\Vector.h"
 #include <map>
 #include <string>
+#include <vector>
 using namespace std;
 
 class Character;
@@ -15,6 +16,7 @@ public:
 	void deleteCharacter(const string &name);
 
 	Character *getNearestCharacter(CVector vec, unsigned int tag = 0, double maxDistance = DBL_MAX); 
+	vector<Character *> getAllNearbyCharacters(CVector vec, unsigned int tag = 0, double maxDistance = DBL_MAX); 
 	Character *getCharacter(string name);
 	void draw();
 	void update(double deltaTime);
@@ -24,5 +26,6 @@ private:
 
 private:
 	map<string, Character *> characters;
+	vector<Character *> nearbyCharacters;
  
 };

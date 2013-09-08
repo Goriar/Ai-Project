@@ -14,7 +14,7 @@
 
 #define PIXEL_PER_METER      (1.0)
 #define MAX_VELOCITY         (200.0)
-#define MAX_ACCEL            (200.0)
+#define MAX_ACCEL            (300.0)
 #define MAX_ANGULAR_VELOCITY (30.0)
 #define MAX_ANGULAR_ACCEL    (30.0)
 

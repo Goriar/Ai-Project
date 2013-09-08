@@ -3,6 +3,7 @@
 #include "behaviour/Behaviour.h"
 #include "app/globaldefs.h"
 #include "components\PlayerMoveComponent.h"
+#include "components\FieldOfViewComponent.h"
 #include <vector>
 
 class Character;
@@ -25,7 +26,8 @@ protected:
 	bool bDragging;
 	Character *dragCharacter;
 	Character *player;
-	PlayerMoveComponent *pMovComp;
+	Character *ghost;
+	CVector *fov;
 	bool* keyStates;
 	BehaviourTree::Behaviour *behaviour;
 

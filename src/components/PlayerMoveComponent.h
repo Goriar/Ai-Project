@@ -4,7 +4,6 @@
 #include "core\Character.h"
 #include "components\Component.h"
 
-#define MAX_VIEW_FIELD_LENGTH (300.0)
 
 class PlayerMoveComponent : public Component
 {
@@ -35,16 +34,12 @@ public:
 	void setAccel(const CVector &vec);     
 	void setAngularVelocity(double v);  
 	void setAngularAccel(double v);
-	void setMousePosition(CVector mouse);
-	bool pointInView(CVector p);
-	bool edgeSideTest(CVector3 p1,CVector3 p2, CVector3 a, CVector3 b);
 	void determineDirection();
 
 protected:
-	CVector mousePosition;
 	CVector velocity;
 	CVector accel;
-	CVector fov;
+
 	bool* keyStates;
 	double angularVelo;
 	double angularAccel;
