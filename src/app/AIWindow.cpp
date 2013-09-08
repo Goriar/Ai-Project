@@ -15,6 +15,10 @@
 #include "behaviour\Sequence.h"
 #include "behaviour\Selector.h"
 
+#include "steering\LookWhereYoureGoing.h"
+#include "steering\Wander.h"
+#include "steering\Patrol.h"
+
 using namespace BehaviourTree;
 
 #include <sys\timeb.h>	
@@ -40,6 +44,7 @@ AIWindow::AIWindow()
 
 	createPlayer();
 	createBehaviour();
+	createEnemy();
 
 	glClearColor(1.0, 1.0, 1.0, 1.0);
 	srand(time(0));
@@ -55,17 +60,11 @@ void AIWindow::createPlayer(){
 	player = cm->createCharacter("Player",PLAYER_TAG);
 	player->setPosition(CVector(nWidth/2,nHeight/2));
 
-	Sprite *sprite = new Sprite("..\\input\\robot_7.raw");
+	Sprite *sprite = new Sprite("..\\input\\player.png");
 	SpriteComponent *sc = new SpriteComponent(player,sprite);
 
 	PlayerMoveComponent *pMovComp = new PlayerMoveComponent(keyStates,player);
 	FieldOfViewComponent *fovComponent = new FieldOfViewComponent(fov,cm,player);
-
-	ghost = cm->createCharacter("Ghost",GHOST_TAG);
-	ghost->setPosition(CVector(nWidth/2,nHeight/2));
-
-	Sprite *sprite2 = new Sprite("..\\input\\robot_1.raw");
-	SpriteComponent *sc2 = new SpriteComponent(ghost,sprite2);
 
 	double x = 0.0;
 	double y = 0.0;
@@ -78,9 +77,31 @@ void AIWindow::createPlayer(){
 		x = rand()%nWidth;
 		y = rand()%nHeight;
 		obstacles->setPosition(CVector(x,y));
-		Sprite *sp = new Sprite("..\\input\\trash.raw");
+		Sprite *sp = new Sprite("..\\input\\trash.png");
 		SpriteComponent *spc = new SpriteComponent(obstacles,sp);
 	}
+}
+
+void AIWindow::createEnemy(){
+	CharacterManager *cm = CharacterManager::instance();
+
+	enemy = cm->createCharacter("Ghost", GHOST_TAG);
+
+	//generate random spawn point
+	srand (time(NULL));
+	int w = (rand() % nWidth);
+	int h = (rand() % nHeight);
+
+	enemy->setPosition(CVector(w,h));
+
+	Sprite *sprite = new Sprite("..\\input\\ghost.png");
+	SpriteComponent *sc = new SpriteComponent(enemy,sprite);
+
+	// create a move component for it
+	MoveComponent *mc = new MoveComponent(enemy);
+	mc->setMaxVelocity(200.0);
+	mc->setAngularSteering(new LookWhereYoureGoing());
+	mc->setPositionSteering(new Wander());
 }
 
 void AIWindow::renderFrame() {

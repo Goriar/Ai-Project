@@ -26,7 +26,7 @@ protected:
 	bool bDragging;
 	Character *dragCharacter;
 	Character *player;
-	Character *ghost;
+	Character *enemy;
 	CVector *fov;
 	bool* keyStates;
 	BehaviourTree::Behaviour *behaviour;
@@ -35,4 +35,5 @@ protected:
 	double getTimeDelta();
 
 	void createPlayer();
+	void createEnemy();
 };

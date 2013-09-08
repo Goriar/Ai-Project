@@ -49,6 +49,15 @@
     <ClCompile Include="src\components\FieldOfViewComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
+    <ClCompile Include="src\steering\LookWhereYoureGoing.cpp">
+      <Filter>steering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\steering\Patrol.cpp">
+      <Filter>steering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\steering\Wander.cpp">
+      <Filter>steering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\app\AIWindow.h">
@@ -113,6 +122,15 @@
     </ClInclude>
     <ClInclude Include="src\core\SOIL.h">
       <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\steering\LookWhereYoureGoing.h">
+      <Filter>steering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\steering\Patrol.h">
+      <Filter>steering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\steering\Wander.h">
+      <Filter>steering</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -6,7 +6,7 @@
 Sprite::Sprite(const char *filename) {
 
 	// load the sprite
-	loadTexture(filename);
+	loadTextureSOIL(filename);
 }
 
 void Sprite::loadTexture(const char *filename) {
