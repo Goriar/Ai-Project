@@ -12,7 +12,7 @@ class CharacterManager : public Singleton<CharacterManager> {
 	
 public:
 	CharacterManager();
-	Character *createCharacter(const string &name, unsigned int tag = 0);
+	Character *createCharacter(const string &name, unsigned int tag = 0, double size = 64.0);
 	void deleteCharacter(const string &name);
 
 	Character *getNearestCharacter(CVector vec, unsigned int tag = 0, double maxDistance = DBL_MAX); 

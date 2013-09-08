@@ -46,6 +46,9 @@
     <ClCompile Include="src\mathutil\Vector3.cpp">
       <Filter>mathutil</Filter>
     </ClCompile>
+    <ClCompile Include="src\components\FieldOfViewComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\app\AIWindow.h">
@@ -104,6 +107,9 @@
     </ClInclude>
     <ClInclude Include="src\mathutil\Vector3.h">
       <Filter>mathutil</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\FieldOfViewComponent.h">
+      <Filter>components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

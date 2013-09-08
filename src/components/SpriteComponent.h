@@ -8,7 +8,7 @@ class Sprite;
 class SpriteComponent : public Component {
 
 public:
-	SpriteComponent(Character *c, Sprite *sprite, double size = 64.0);
+	SpriteComponent(Character *c, Sprite *sprite);
     virtual void draw();
 
 protected:

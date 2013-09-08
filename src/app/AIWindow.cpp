@@ -63,8 +63,8 @@ void AIWindow::createPlayer(){
 	ghost = cm->createCharacter("Ghost",GHOST_TAG);
 	ghost->setPosition(CVector(nWidth/2,nHeight/2));
 
-	Sprite *sprite2 = new Sprite("..\\input\\robot_8.raw");
-	SpriteComponent *sc2 = new SpriteComponent(ghost,sprite);
+	Sprite *sprite2 = new Sprite("..\\input\\robot_1.raw");
+	SpriteComponent *sc2 = new SpriteComponent(ghost,sprite2);
 
 	
 }

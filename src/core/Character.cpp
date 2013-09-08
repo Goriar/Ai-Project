@@ -9,12 +9,13 @@
 #include "steering/Steering.h"
 #include "components\Component.h"
 
-Character::Character(const string &n, unsigned int t) {
+Character::Character(const string &n, unsigned int t, double s) {
 
 	name = n;
 	position.set(0.0,0.0);
 	rotation = 0.0;
 	tag = t;
+	size = s;
 }
 
 Character::~Character() {
@@ -23,3 +24,4 @@ Character::~Character() {
 
 void Character::setPosition(const CVector &vec)  {position = vec;  }
 void Character::setRotation(double v)            {rotation = v; }	
+void Character::setSize(double s)            {size = s; }	

@@ -96,6 +96,7 @@
     <ClCompile Include="src\behaviour\Selector.cpp" />
     <ClCompile Include="src\behaviour\Sequence.cpp" />
     <ClCompile Include="src\components\ComponentContainer.cpp" />
+    <ClCompile Include="src\components\FieldOfViewComponent.cpp" />
     <ClCompile Include="src\components\MoveComponent.cpp" />
     <ClCompile Include="src\components\PlayerMoveComponent.cpp" />
     <ClCompile Include="src\components\SpriteComponent.cpp" />
@@ -115,6 +116,7 @@
     <ClInclude Include="src\behaviour\Sequence.h" />
     <ClInclude Include="src\components\Component.h" />
     <ClInclude Include="src\components\ComponentContainer.h" />
+    <ClInclude Include="src\components\FieldOfViewComponent.h" />
     <ClInclude Include="src\components\MoveComponent.h" />
     <ClInclude Include="src\components\PlayerMoveComponent.h" />
     <ClInclude Include="src\components\SpriteComponent.h" />

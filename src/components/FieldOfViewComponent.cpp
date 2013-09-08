@@ -20,15 +20,25 @@ void FieldOfViewComponent::update(double deltaTime)
 {
 	
 	fov = *mousePosition - parent->getPosition();
-	vector<Character *> nearbyCharacters = characterManager->getAllNearbyCharacters(parent->getPosition(),GHOST_TAG,MAX_VIEW_FIELD_LENGTH);
+	double scale = MAX_VIEW_FIELD_LENGTH/fov.getLength();
+	fov = fov*scale;
+	vector<Character *> nearbyCharacters = characterManager->getAllNearbyCharacters(parent->getPosition(),GHOST_TAG,MAX_VIEW_FIELD_LENGTH+50.0);
 
 	vector<Character *>::iterator it = nearbyCharacters.begin();
 
 	while(it!=nearbyCharacters.end()){
 		Character *c = (*it);
 		it++;
-		if(pointInView(c->getPosition()- parent->getPosition())){
-			std::cout << (c->getPosition()- parent->getPosition())[0] << " " << (c->getPosition()- parent->getPosition())[1] << endl;
+		double size = c->getSize();
+		CVector p = c->getPosition() - parent->getPosition();
+		CVector v1 = CVector(p[0]-size,p[1]+size);
+		CVector v2 = CVector(p[0]+size,p[1]+size);
+		CVector v3 = CVector(p[0]-size,p[1]-size);
+		CVector v4 = CVector(p[0]+size,p[1]-size);
+
+		if(pointInView(v1)||pointInView(v2)||pointInView(v3)||pointInView(v4)){
+			// BENACHRICHTIGUNG AN GEISTER EINFÜGEN
+			std::cout << "I SEE YOU!" << endl;
 		}
 	}
 	
@@ -39,10 +49,6 @@ void FieldOfViewComponent::draw()
 
 	CVector position = parent->getPosition();
 	double rotation = parent->getRotation();
-	
-
-	double scale = MAX_VIEW_FIELD_LENGTH/fov.getLength();
-	fov = fov*scale;
 	
 	CVector v1 = fov - CVector(-fov[1],fov[0])*M_PI/6;
 	CVector v2 = fov - CVector(fov[1],-fov[0])*M_PI/6;
@@ -64,13 +70,14 @@ void FieldOfViewComponent::draw()
 	glColor4d(1.0,1.0,1.0,1.0);
 }
 
+
 bool FieldOfViewComponent::pointInView(CVector p)
 {
 	CVector3 point = CVector3(p[0],p[1],0.0);
 
 	CVector v1 = fov - CVector(-fov[1],fov[0])*M_PI/6;
 	CVector v2 = fov - CVector(fov[1],-fov[0])*M_PI/6;
-	CVector position = parent->getPosition();
+	CVector position = CVector(0,0);
 
 	CVector3 a = CVector3(v1[0],v1[1],0.0);
 	CVector3 b = CVector3(v2[0],v2[1],0.0);
@@ -91,3 +98,4 @@ bool FieldOfViewComponent::edgeSideTest(CVector3 p1,CVector3 p2, CVector3 a, CVe
 	else
 		return false;
 }
+

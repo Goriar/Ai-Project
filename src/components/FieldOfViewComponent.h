@@ -18,6 +18,7 @@ public:
 	bool pointInView(CVector p);
 	bool edgeSideTest(CVector3 p1,CVector3 p2, CVector3 a, CVector3 b);
 
+
 protected: 
 	CVector* mousePosition;
 	CVector fov;

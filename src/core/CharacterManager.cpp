@@ -5,11 +5,11 @@ CharacterManager::CharacterManager() {
 
 }
 
-Character *CharacterManager::createCharacter(const string &name, unsigned int tag) {
+Character *CharacterManager::createCharacter(const string &name, unsigned int tag, double size) {
 	
 	if (characters.find(name) != characters.end()) return NULL;
 
-	Character *c = new Character(name,tag);
+	Character *c = new Character(name,tag,size);
 	characters[name] = c;
 
 	return c;

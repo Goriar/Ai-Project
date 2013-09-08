@@ -5,9 +5,9 @@
 #include <GL\GL.h>
 #include <stdio.h>
 
-SpriteComponent::SpriteComponent(Character *c, Sprite *s, double sz) {
+SpriteComponent::SpriteComponent(Character *c, Sprite *s) {
 
-	size = sz;
+	size = c->getSize();
 	sprite = s;
 	parent = NULL;
 	if (c != NULL) {
