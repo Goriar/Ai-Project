@@ -1,11 +1,12 @@
 #include "app\AIWindow.h"
-#include "core\Character.h"
 #include "core\Sprite.h"
 #include "core\CharacterManager.h"
+#include "core\Character.h"
 #include <math.h>
 #include <GL/glut.h>
 #include <stdio.h>
 #include <assert.h>
+#include <sstream>
 
 #include "components\MoveComponent.h"
 #include "components\SpriteComponent.h"
@@ -66,7 +67,20 @@ void AIWindow::createPlayer(){
 	Sprite *sprite2 = new Sprite("..\\input\\robot_1.raw");
 	SpriteComponent *sc2 = new SpriteComponent(ghost,sprite2);
 
-	
+	double x = 0.0;
+	double y = 0.0;
+	for (int i = 0; i < 10; i++) {
+		Character *obstacles = NULL;
+		stringstream sstr;
+		sstr << "Obstacle" << i;
+		string obsName = sstr.str();
+		obstacles = cm->createCharacter(obsName,OBSTACLE_TAG);
+		x = rand()%nWidth;
+		y = rand()%nHeight;
+		obstacles->setPosition(CVector(x,y));
+		Sprite *sp = new Sprite("..\\input\\trash.raw");
+		SpriteComponent *spc = new SpriteComponent(obstacles,sp);
+	}
 }
 
 void AIWindow::renderFrame() {

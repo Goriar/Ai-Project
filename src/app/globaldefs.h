@@ -30,7 +30,8 @@
 enum Tags { 
 	NO_TAG,
 	PLAYER_TAG,
-	GHOST_TAG
+	GHOST_TAG,
+	OBSTACLE_TAG
 };
 
 extern bool debug;
