@@ -58,6 +58,9 @@
     <ClCompile Include="src\steering\Wander.cpp">
       <Filter>steering</Filter>
     </ClCompile>
+    <ClCompile Include="src\components\FieldOfHideComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\app\AIWindow.h">
@@ -131,6 +134,9 @@
     </ClInclude>
     <ClInclude Include="src\steering\Wander.h">
       <Filter>steering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\FieldOfHideComponent.h">
+      <Filter>components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -10,6 +10,7 @@
 
 #include "components\MoveComponent.h"
 #include "components\SpriteComponent.h"
+#include "components\FieldOfHideComponent.h"
 
 #include "behaviour\Behaviour.h"
 #include "behaviour\Sequence.h"
@@ -79,6 +80,7 @@ void AIWindow::createPlayer(){
 		obstacles->setPosition(CVector(x,y));
 		Sprite *sp = new Sprite("..\\input\\trash.png");
 		SpriteComponent *spc = new SpriteComponent(obstacles,sp);
+		FieldOfHideComponent *fohComponent = new FieldOfHideComponent(player, cm,obstacles);
 	}
 }
 
