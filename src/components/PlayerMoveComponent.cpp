@@ -131,7 +131,7 @@ void PlayerMoveComponent::quadColission()
 			CVector	maxW = CVector(0,0);
 			CVector minW = CVector(9999999,9999999);
 
-			for(int j = 0; i<4; ++i){
+			for(int j = 0; j<4; ++j){
 
 				CVector projV = (a[i] * v[j]) * a[i];
 				if(projV.getLength()>maxV.getLength())
@@ -162,36 +162,11 @@ void PlayerMoveComponent::quadColission()
 		}
 
 		if(!moveVector.isNil()){
+			std::cout << moveVector[0] << " " << moveVector[1] << endl;
+			position+=moveVector;
+			velocity *= -1.0;
 		}
 
-			/*
-
-		if((position-cPos).getLength()>size+cSize) continue;
-		if(position[0]-size < cPos[0]+cSize || position[0]+size > cPos[0]-cSize){
-
-			if(position[1]-size < cPos[1]+cSize && position[1]>cPos[1]){
-			position[1] = cPos[1]+cSize;
-			velocity[1] *= -1.0;
-			}
-
-			if(position[1]+size > cPos[1]-cSize && position[1]<cPos[1]){
-			position[1] = cPos[1]-cSize;
-			velocity[1] *= -1.0;
-			}
-		}
-	
-		if(position[1]-size < cPos[1]+cSize || position[1]+size > cPos[1]-cSize){
-			if(position[0]-size < cPos[0]+cSize && position[0]>cPos[0]){
-				position[0] = cPos[0]+cSize;
-				velocity[0] *= -1.0;
-			}
-
-			if(position[0]+size > cPos[0]-cSize && position[0]<cPos[0]){
-				position[0] = cPos[0]-cSize;
-				velocity[0] *= -1.0;
-			}
-		}
-		*/
 	}
 	setPosition(position);
 }
