@@ -13,6 +13,8 @@ public:
 	virtual void update(double deltaTime);
 	void updateState();
 
+	void setState( Ghost_state s) { state = s ;} ;
+
 protected: 
 	Character* ghost;
 	MoveComponent* mc;

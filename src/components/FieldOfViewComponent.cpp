@@ -1,4 +1,5 @@
 #include "FieldOfViewComponent.h"
+#include "components\GhostBehaviourComponent.h"
 
 
 FieldOfViewComponent::FieldOfViewComponent(CVector* mouse, Character *c)
@@ -38,6 +39,18 @@ void FieldOfViewComponent::update(double deltaTime)
 		if(pointInView(v1)||pointInView(v2)||pointInView(v3)||pointInView(v4)){
 			// BENACHRICHTIGUNG AN GEISTER EINFÜGEN
 			
+			// finde ghost behaviour komponente
+			vector<Component *> compVec = c->attachedComponents();
+			vector<Component *>::iterator it2 = compVec.begin();
+
+			while(it2 != compVec.end())
+			{
+				Component *comp = (*it2);
+				it2++;
+
+				if(comp->getTag() == GHOST_BEH)
+					((GhostBehaviourComponent*) comp)->setState(SEEK);
+			}
 
 			std::cout << "I SEE YOU!" << endl;
 		}

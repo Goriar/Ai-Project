@@ -34,7 +34,7 @@ enum Tags {
 	OBSTACLE_TAG
 };
 
-enum Component_tags{
+enum Component_tag{
 	FOV,
 	FOH,
 	GHOST_BEH,

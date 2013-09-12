@@ -1,5 +1,6 @@
 #pragma once
 #include "core\Character.h"
+#include "app\globaldefs.h"
 
 class Component {
 
@@ -13,9 +14,14 @@ public:
 	virtual void draw() {} 
 	virtual Character *getCharacter() { return parent; }
 
+	void setTag(Component_tag t) { tag = t; }
+	Component_tag getTag() { return tag; }
+
 protected:
 	bool active;
 	Character *parent;
+
+	Component_tag tag;
 };
 
 template<class T> T* getComponent(Character *c) {
