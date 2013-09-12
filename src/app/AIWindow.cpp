@@ -11,6 +11,7 @@
 #include "components\MoveComponent.h"
 #include "components\SpriteComponent.h"
 #include "components\FieldOfHideComponent.h"
+#include "components\GhostBehaviourComponent.h"
 
 #include "behaviour\Behaviour.h"
 #include "behaviour\Sequence.h"
@@ -18,7 +19,9 @@
 
 #include "steering\LookWhereYoureGoing.h"
 #include "steering\Wander.h"
-#include "steering\Patrol.h"
+#include "steering\Flee.h"
+#include "steering\Seek.h"
+#include "steering\Idle.h"
 
 using namespace BehaviourTree;
 
@@ -69,12 +72,14 @@ void AIWindow::createPlayer(){
 
 	double x = 0.0;
 	double y = 0.0;
-	for (int i = 0; i < 10; i++) {
+	//srand (time(NULL));
+	for (int i = 0; i <5 ; i++) {
 		Character *obstacles = NULL;
 		stringstream sstr;
 		sstr << "Obstacle" << i;
 		string obsName = sstr.str();
 		obstacles = cm->createCharacter(obsName,OBSTACLE_TAG);
+		
 		x = rand()%nWidth;
 		y = rand()%nHeight;
 		obstacles->setPosition(CVector(x,y));
@@ -103,7 +108,10 @@ void AIWindow::createEnemy(){
 	MoveComponent *mc = new MoveComponent(enemy);
 	mc->setMaxVelocity(200.0);
 	mc->setAngularSteering(new LookWhereYoureGoing());
-	mc->setPositionSteering(new Wander());
+	//mc->setPositionSteering(new Seek(cm->getCharacter("Player")));
+
+	GhostBehaviourComponent *ghostBehaviour = new GhostBehaviourComponent(enemy, mc, cm); 
+
 }
 
 void AIWindow::renderFrame() {

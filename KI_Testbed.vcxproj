@@ -99,6 +99,7 @@
     <ClCompile Include="src\components\ComponentContainer.cpp" />
     <ClCompile Include="src\components\FieldOfHideComponent.cpp" />
     <ClCompile Include="src\components\FieldOfViewComponent.cpp" />
+    <ClCompile Include="src\components\GhostBehaviourComponent.cpp" />
     <ClCompile Include="src\components\MoveComponent.cpp" />
     <ClCompile Include="src\components\PlayerMoveComponent.cpp" />
     <ClCompile Include="src\components\SpriteComponent.cpp" />
@@ -110,8 +111,11 @@
     <ClCompile Include="src\app\main.cpp" />
     <ClCompile Include="src\app\AIWindow.cpp" />
     <ClCompile Include="src\mathutil\Vector3.cpp" />
+    <ClCompile Include="src\steering\Flee.cpp" />
+    <ClCompile Include="src\steering\Idle.cpp" />
     <ClCompile Include="src\steering\LookWhereYoureGoing.cpp" />
     <ClCompile Include="src\steering\Patrol.cpp" />
+    <ClCompile Include="src\steering\Seek.cpp" />
     <ClCompile Include="src\steering\Wander.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -123,6 +127,7 @@
     <ClInclude Include="src\components\ComponentContainer.h" />
     <ClInclude Include="src\components\FieldOfHideComponent.h" />
     <ClInclude Include="src\components\FieldOfViewComponent.h" />
+    <ClInclude Include="src\components\GhostBehaviourComponent.h" />
     <ClInclude Include="src\components\MoveComponent.h" />
     <ClInclude Include="src\components\PlayerMoveComponent.h" />
     <ClInclude Include="src\components\SpriteComponent.h" />
@@ -136,8 +141,11 @@
     <ClInclude Include="src\app\globaldefs.h" />
     <ClInclude Include="src\app\AIWindow.h" />
     <ClInclude Include="src\mathutil\Vector3.h" />
+    <ClInclude Include="src\steering\Flee.h" />
+    <ClInclude Include="src\steering\Idle.h" />
     <ClInclude Include="src\steering\LookWhereYoureGoing.h" />
     <ClInclude Include="src\steering\Patrol.h" />
+    <ClInclude Include="src\steering\Seek.h" />
     <ClInclude Include="src\steering\Steering.h" />
     <ClInclude Include="src\steering\Wander.h" />
   </ItemGroup>

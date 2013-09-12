@@ -13,6 +13,7 @@ FieldOfHideComponent::FieldOfHideComponent(Character *p, CharacterManager *cm, C
 
 FieldOfHideComponent::~FieldOfHideComponent(void) {
 }
+
 void FieldOfHideComponent::update(double deltaTime) {
 		
 	foh = (-1)*(player->getPosition() - parent->getPosition());

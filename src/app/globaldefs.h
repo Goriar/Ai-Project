@@ -25,13 +25,19 @@
 #define MAX_ENERGY (30.0)
 #define MIN_ENERGY (5.0)
 
-#define TIME_TO_RECHARGE (3.0)
+#define GHOST_PLAYER_DIST (120.0)
 
 enum Tags { 
 	NO_TAG,
 	PLAYER_TAG,
 	GHOST_TAG,
 	OBSTACLE_TAG
+};
+
+enum Ghost_state {
+	IDLE,
+	SEEK,
+	FLEE
 };
 
 extern bool debug;

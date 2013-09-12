@@ -37,6 +37,8 @@ void FieldOfViewComponent::update(double deltaTime)
 
 		if(pointInView(v1)||pointInView(v2)||pointInView(v3)||pointInView(v4)){
 			// BENACHRICHTIGUNG AN GEISTER EINFÜGEN
+			
+
 			std::cout << "I SEE YOU!" << endl;
 		}
 	}

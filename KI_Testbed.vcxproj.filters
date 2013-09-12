@@ -61,6 +61,18 @@
     <ClCompile Include="src\components\FieldOfHideComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
+    <ClCompile Include="src\steering\Seek.cpp">
+      <Filter>steering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\steering\Idle.cpp">
+      <Filter>steering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\steering\Flee.cpp">
+      <Filter>steering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\GhostBehaviourComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\app\AIWindow.h">
@@ -136,6 +148,18 @@
       <Filter>steering</Filter>
     </ClInclude>
     <ClInclude Include="src\components\FieldOfHideComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\steering\Seek.h">
+      <Filter>steering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\steering\Idle.h">
+      <Filter>steering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\steering\Flee.h">
+      <Filter>steering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\GhostBehaviourComponent.h">
       <Filter>components</Filter>
     </ClInclude>
   </ItemGroup>
