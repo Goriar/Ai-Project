@@ -92,8 +92,9 @@ void FieldOfHideComponent::draw() {
 
 	glColor3f(0.0,1.0,0.0);
 	glDisable(GL_TEXTURE_2D);
-	glBegin(GL_TRIANGLES);
-	glVertex2d(0.0,0.0);
+	glBegin(GL_POLYGON);
+	glVertex2d(v3[0],v3[1]);
+	glVertex2d(v4[0],v4[1]);
 	glVertex2d(v1[0],v1[1]);
 	glVertex2d(v2[0],v2[1]);
 	glEnd();
