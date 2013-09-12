@@ -26,9 +26,9 @@ void SpriteComponent::draw() {
 	glPushMatrix();
 	glTranslated(position[0],position[1],0.0);
 	
-	sprite->bind();
+	//sprite->bind();
 	
-	glColor3d(1.0,1.0,1.0);
+	glColor3d(1.0,0.0,0.0);
 	glBegin(GL_QUADS);
 	glTexCoord2d(0.0, 1.0); glVertex2d(-size, -size);
 	glTexCoord2d(0.0, 0.0); glVertex2d(-size,  size);

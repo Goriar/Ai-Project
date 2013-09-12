@@ -34,7 +34,9 @@ public:
 	void setAccel(const CVector &vec);     
 	void setAngularVelocity(double v);  
 	void setAngularAccel(double v);
+
 	void determineDirection();
+	void quadColission();
 
 protected:
 	CVector velocity;
