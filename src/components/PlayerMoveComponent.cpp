@@ -85,19 +85,19 @@ void PlayerMoveComponent::quadColission()
 
 
 	CVector a1 = v1 - v2;
-	a1 = CVector(-a1[1],a1[0]);
+	a1 = CVector(a1[1],-a1[0]);
 	a1.normalize();
 
 	CVector a2 = v2 - v3;
-	a2 = CVector(-a2[1],a2[0]);
+	a2 = CVector(a2[1],-a2[0]);
 	a2.normalize();
 
 	CVector a3 = v3 - v4;
-	a3 = CVector(-a3[1],a3[0]);
+	a3 = CVector(a3[1],-a3[0]);
 	a3.normalize();
 
 	CVector a4 = v4 - v1;
-	a4 = CVector(-a4[1],a4[0]);
+	a4 = CVector(a4[1],-a4[0]);
 	a4.normalize();
 
 	CVector a[4] = {a1,a2,a3,a4};
@@ -126,44 +126,52 @@ void PlayerMoveComponent::quadColission()
 		CVector moveVector = CVector(9999999,9999999); 
 
 		for(int i = 0; i<4; ++i){
-			CVector maxV = CVector(0,0);
-			CVector minV = CVector(9999999,9999999);
-			CVector	maxW = CVector(0,0);
-			CVector minW = CVector(9999999,9999999);
+			CVector maxV = CVector();
+			CVector minV = CVector();
+			CVector	maxW = CVector();
+			CVector minW = CVector();
 
 			for(int j = 0; j<4; ++j){
 
 				CVector projV = (a[i] * v[j]) * a[i];
-				if(projV.getLength()>maxV.getLength())
-					maxV = projV;
-				if(projV.getLength()<minV.getLength())
-					minV = projV;
+			
+				if(projV[0]>maxV[0] || maxV.isNil())
+					maxV[0] = projV[0];
+				if(projV[1]>maxV[1] || maxV.isNil())
+					maxV[1] = projV[1];
+				if(projV[0]<minV[0] || minV.isNil())
+					minV[0] = projV[0];
+				if(projV[1]<minV[1] || minV.isNil())
+					minV[1] = projV[1];
 
 				
 				CVector projW = (a[i] * w[j]) * a[i];
-				if(projW.getLength()>maxW.getLength())
-					maxW = projW;
-				if(projW.getLength()<minW.getLength())
-					minW = projW;
-
+				if(projW[0]>maxW[0] || maxW.isNil())
+					maxW[0] = projW[0];
+				if(projW[1]>maxW[1] || maxW.isNil())
+					maxW[1] = projW[1];
+				if(projW[0]<minW[0] || minW.isNil())
+					minW[0] = projW[0];
+				if(projW[1]<minW[1] || minW.isNil())
+					minW[1] = projW[1];
 				
 			}
 
-			if(maxV.getLength()>minW.getLength() && minV.getLength() < maxW.getLength()){
-				CVector a = (maxV - minW).getLength() < (minV - maxW).getLength() ? maxV-minW : minV - maxW;
-				if(moveVector.getLength() > a.getLength()){
-					moveVector = a;
+			if((maxV[0]>=minW[0] && maxV[1]>=minW[1])&& (minV[0] <= maxW[0] && minV[1] <= maxW[1])){
+				CVector vec = (maxV - minW).getLength() < (minV - maxW).getLength() ? maxV-minW : minV - maxW;
+				if(moveVector.getLength() > vec.getLength()){
+					moveVector = vec;
+					
 				}
 			} else {
 				moveVector = CVector();
-				
+			
 			}
 
 		}
 
 		if(!moveVector.isNil()){
-			std::cout << moveVector[0] << " " << moveVector[1] << endl;
-			position-=moveVector*1.2;
+			position-=moveVector;
 			moveVector.normalize();
 			moveVector *= MAX_VELOCITY;
 			velocity = -moveVector;
