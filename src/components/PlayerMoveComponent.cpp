@@ -163,8 +163,10 @@ void PlayerMoveComponent::quadColission()
 
 		if(!moveVector.isNil()){
 			std::cout << moveVector[0] << " " << moveVector[1] << endl;
-			position+=moveVector;
-			velocity *= -1.0;
+			position-=moveVector*1.2;
+			moveVector.normalize();
+			moveVector *= MAX_VELOCITY;
+			velocity = -moveVector;
 		}
 
 	}
