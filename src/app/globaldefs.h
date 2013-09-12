@@ -34,6 +34,15 @@ enum Tags {
 	OBSTACLE_TAG
 };
 
+enum Component_tags{
+	FOV,
+	FOH,
+	GHOST_BEH,
+	MOVE,
+	PLAYER,
+	SPRITE
+};
+
 enum Ghost_state {
 	IDLE,
 	SEEK,
