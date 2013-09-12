@@ -34,19 +34,19 @@ void FieldOfHideComponent::draw() {
 
 	if (player->getPosition()[1] >= parent->getPosition()[1]+parent->getSize()) {
 		if (player->getPosition()[0] >= parent->getPosition()[0]+parent->getSize()) {
-			v3[0] = 0.0-parent->getSize();
-			v3[1] = 0.0+parent->getSize();
-			v4[0] = 0.0+parent->getSize();
-			v4[1] = 0.0-parent->getSize();
+			v3[0] = 0.0+parent->getSize();
+			v3[1] = 0.0-parent->getSize();
+			v4[0] = 0.0-parent->getSize();
+			v4[1] = 0.0+parent->getSize();
 		} else if (player->getPosition()[0] <= parent->getPosition()[0]-parent->getSize()) {
 			v3[0] = 0.0+parent->getSize();
 			v3[1] = 0.0+parent->getSize();
 			v4[0] = 0.0-parent->getSize();
 			v4[1] = 0.0-parent->getSize();
 		} else {
-			v3[0] = 0.0-parent->getSize();
+			v3[0] = 0.0+parent->getSize();
 			v3[1] = 0.0+parent->getSize();
-			v4[0] = 0.0+parent->getSize();
+			v4[0] = 0.0-parent->getSize();
 			v4[1] = 0.0+parent->getSize();
 		}
 	} else if (player->getPosition()[1] <= parent->getPosition()[1]-parent->getSize()) {
@@ -69,9 +69,9 @@ void FieldOfHideComponent::draw() {
 	} else {
 		if (player->getPosition()[0] >= parent->getPosition()[0]+parent->getSize()) {
 			v3[0] = 0.0+parent->getSize();
-			v3[1] = 0.0+parent->getSize();
+			v3[1] = 0.0-parent->getSize();
 			v4[0] = 0.0+parent->getSize();
-			v4[1] = 0.0-parent->getSize();
+			v4[1] = 0.0+parent->getSize();
 		} else if (player->getPosition()[0] <= parent->getPosition()[0]-parent->getSize()) {
 			v3[0] = 0.0-parent->getSize();
 			v3[1] = 0.0+parent->getSize();
