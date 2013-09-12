@@ -5,7 +5,7 @@
 class Component {
 
 public:
-	Component() { active = true; }
+	Component() { active = true; tag = NO_COMP_TAG; }
 	virtual void setActive(bool a) { active = a; }
 	virtual bool isActive() { return active;}
 

@@ -8,12 +8,12 @@
 class GhostBehaviourComponent : public Component
 {
 public:
-	GhostBehaviourComponent(Character* ghost, MoveComponent* mc, CharacterManager *cm);
+	GhostBehaviourComponent(Character* ghost, MoveComponent* mc, CharacterManager *cm, Component_tag tag);
 	virtual ~GhostBehaviourComponent(void);
 	virtual void update(double deltaTime);
 	void updateState();
 
-	void setState( Ghost_state s) { state = s ;} ;
+	void setState( Ghost_state s) { if(state != FLEE) {state = s ; updateState();} } ;
 
 protected: 
 	Character* ghost;

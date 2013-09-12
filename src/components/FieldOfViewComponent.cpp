@@ -49,10 +49,10 @@ void FieldOfViewComponent::update(double deltaTime)
 				it2++;
 
 				if(comp->getTag() == GHOST_BEH)
-					((GhostBehaviourComponent*) comp)->setState(SEEK);
+					((GhostBehaviourComponent*) comp)->setState(FLEE);
 			}
 
-			std::cout << "I SEE YOU!" << endl;
+			//std::cout << "I SEE YOU!" << endl;
 		}
 	}
 	

@@ -5,7 +5,7 @@
 #include "steering\Seek.h"
 #include "steering\Idle.h"
 
-GhostBehaviourComponent::GhostBehaviourComponent(Character* c, MoveComponent* m, CharacterManager *charam)
+GhostBehaviourComponent::GhostBehaviourComponent(Character* c, MoveComponent* m, CharacterManager *charam, Component_tag tag)
 {
 	ghost = c;
 	mc = m;
@@ -15,6 +15,8 @@ GhostBehaviourComponent::GhostBehaviourComponent(Character* c, MoveComponent* m,
 	state = SEEK;
 	lastState = state;
 	updateState();
+
+	setTag(tag);
 }
 
 GhostBehaviourComponent::~GhostBehaviourComponent()
@@ -63,6 +65,8 @@ void GhostBehaviourComponent::updateState()
 
 	case FLEE:
 		{
+			std::cout << "I SEE YOU!" << endl;
+			mc->setPositionSteering(new Flee(cm->getCharacter("Player")));
 			return;
 		}
 

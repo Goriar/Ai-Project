@@ -110,7 +110,7 @@ void AIWindow::createEnemy(){
 	mc->setAngularSteering(new LookWhereYoureGoing());
 	//mc->setPositionSteering(new Seek(cm->getCharacter("Player")));
 
-	GhostBehaviourComponent *ghostBehaviour = new GhostBehaviourComponent(enemy, mc, cm); 
+	GhostBehaviourComponent *ghostBehaviour = new GhostBehaviourComponent(enemy, mc, cm, GHOST_BEH);
 
 }
 

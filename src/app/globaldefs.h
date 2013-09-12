@@ -35,6 +35,7 @@ enum Tags {
 };
 
 enum Component_tag{
+	NO_COMP_TAG,
 	FOV,
 	FOH,
 	GHOST_BEH,
