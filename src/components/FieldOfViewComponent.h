@@ -4,6 +4,7 @@
 #include "app\globaldefs.h"
 #include "components\Component.h"
 #include "core\CharacterManager.h"
+#include <vector>
 
 #define MAX_VIEW_FIELD_LENGTH (300.0)
 
@@ -17,11 +18,13 @@ public:
 
 	bool pointInView(CVector p);
 	bool edgeSideTest(CVector3 p1,CVector3 p2, CVector3 a, CVector3 b);
+	bool isCharacterSeen(Character* c);
 
 
 protected: 
 	CVector* mousePosition;
 	CVector fov;
+	std::vector<Character*> seenEnemies;
 
 };
 

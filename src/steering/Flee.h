@@ -1,6 +1,7 @@
 #pragma once
 
 #include "steering\Steering.h"
+#include "components\MoveComponent.h"
 
 class Character;
 

@@ -23,6 +23,9 @@
 #include "steering\Seek.h"
 #include "steering\Idle.h"
 
+#include "tasks\TaskHideFromPlayer.h"
+#include "tasks\TaskPursuePlayer.h"
+
 using namespace BehaviourTree;
 
 #include <sys\timeb.h>	
@@ -33,8 +36,10 @@ using namespace BehaviourTree;
 void AIWindow::createBehaviour() {
 
 	behaviour = new Behaviour();
-	Selector *rechargeSelector = new Selector(behaviour);
-	Sequence *cleanupSequence = new Sequence(rechargeSelector);
+	Selector *huntSelector = new Selector(behaviour);
+	TaskPursuePlayer *pursue = new TaskPursuePlayer(behaviour,huntSelector,enemy);
+	TaskHideFromPlayer *hide = new TaskHideFromPlayer(behaviour,huntSelector,enemy);
+
 }
 
 
@@ -47,8 +52,8 @@ AIWindow::AIWindow()
 	fov = new CVector();
 
 	createPlayer();
-	createBehaviour();
 	createEnemy();
+	createBehaviour();
 
 	glClearColor(1.0, 1.0, 1.0, 1.0);
 	srand(time(0));
@@ -110,7 +115,7 @@ void AIWindow::createEnemy(){
 	mc->setAngularSteering(new LookWhereYoureGoing());
 	//mc->setPositionSteering(new Seek(cm->getCharacter("Player")));
 
-	GhostBehaviourComponent *ghostBehaviour = new GhostBehaviourComponent(enemy, mc, cm, GHOST_BEH);
+	//GhostBehaviourComponent *ghostBehaviour = new GhostBehaviourComponent(enemy, mc, cm, GHOST_BEH);
 
 }
 

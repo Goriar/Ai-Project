@@ -9,6 +9,7 @@ FieldOfViewComponent::FieldOfViewComponent(CVector* mouse, Character *c)
 	mousePosition = mouse;
 	fov = CVector(0,0);
 	active = true;
+	seenEnemies.clear();
 }
 
 
@@ -26,6 +27,7 @@ void FieldOfViewComponent::update(double deltaTime)
 
 	vector<Character *>::iterator it = nearbyCharacters.begin();
 
+	seenEnemies.clear();
 	while(it!=nearbyCharacters.end()){
 		Character *c = (*it);
 		it++;
@@ -38,7 +40,7 @@ void FieldOfViewComponent::update(double deltaTime)
 
 		if(pointInView(v1)||pointInView(v2)||pointInView(v3)||pointInView(v4)){
 			// BENACHRICHTIGUNG AN GEISTER EINFÜGEN
-			
+			seenEnemies.push_back(c);
 			// finde ghost behaviour komponente
 			vector<Component *> compVec = c->attachedComponents();
 			vector<Component *>::iterator it2 = compVec.begin();
@@ -111,5 +113,18 @@ bool FieldOfViewComponent::edgeSideTest(CVector3 p1,CVector3 p2, CVector3 a, CVe
 		return true;
 	else
 		return false;
+}
+
+bool FieldOfViewComponent::isCharacterSeen(Character *c)
+{
+	vector<Character*>::iterator it = seenEnemies.begin();
+	while(it!=seenEnemies.end()){
+		Character *t = (*it);
+		if(t==c)
+			return true;
+
+		it++;
+	}
+	return false;
 }
 

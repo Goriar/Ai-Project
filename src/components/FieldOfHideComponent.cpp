@@ -103,3 +103,10 @@ void FieldOfHideComponent::draw() {
 
 	glColor4d(1.0,1.0,1.0,1.0);
 }
+
+CVector FieldOfHideComponent::getCenterPosition()
+{
+	CVector vec = foh + parent->getPosition();
+
+	return vec;
+}

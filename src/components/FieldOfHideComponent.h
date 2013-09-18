@@ -14,6 +14,7 @@ public:
 	virtual void update(double deltaTime);
 	virtual void draw();
 
+	CVector getCenterPosition();
 protected: 
 	CVector foh;
 	Character *player;

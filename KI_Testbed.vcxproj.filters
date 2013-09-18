@@ -73,6 +73,15 @@
     <ClCompile Include="src\components\GhostBehaviourComponent.cpp">
       <Filter>components</Filter>
     </ClCompile>
+    <ClCompile Include="src\tasks\TaskHideFromPlayer.cpp">
+      <Filter>tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tasks\TaskPursuePlayer.cpp">
+      <Filter>tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="src\steering\Hide.cpp">
+      <Filter>steering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\app\AIWindow.h">
@@ -161,6 +170,15 @@
     </ClInclude>
     <ClInclude Include="src\components\GhostBehaviourComponent.h">
       <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tasks\TaskHideFromPlayer.h">
+      <Filter>tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tasks\TaskPursuePlayer.h">
+      <Filter>tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\steering\Hide.h">
+      <Filter>steering</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
