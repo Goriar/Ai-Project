@@ -4,18 +4,16 @@
 
 class Character;
 
-// Seek: Calculate the path acceleration in order
-// to steer towards a given target character 
-//
-class Seek : public PositionSteering {
+
+class ObstacleAvoidance : public PositionSteering {
 	
 public:
-	Seek(Character *target);
+	ObstacleAvoidance(Character *target);
 	virtual void apply(MoveComponent *);
 	virtual void debugDraw(MoveComponent *);
 	void retarget(Character *c) { target = c; }
-	
 
 protected:
+	double box_length;
 	Character *target;
 };

@@ -1,7 +1,6 @@
 #include "Hide.h"
 #include "components\MoveComponent.h"
 
-
 Hide::Hide(CVector pos)
 {
 	position = pos;

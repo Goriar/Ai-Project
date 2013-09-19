@@ -7,6 +7,8 @@
 #include "steering\Idle.h"
 #include "steering\Patrol.h"
 
+#include "assert.h"
+
 Seek::Seek(Character *target) {
 	this->target = target;
 }
@@ -38,4 +40,8 @@ void Seek::apply(MoveComponent *self) {
 
 	self->setAccel(accel);
 
+}
+
+void Seek::debugDraw(MoveComponent *mc)
+{
 }

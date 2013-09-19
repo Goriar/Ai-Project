@@ -97,7 +97,7 @@ void AIWindow::createPlayer(){
 void AIWindow::createEnemy(){
 	CharacterManager *cm = CharacterManager::instance();
 
-	enemy = cm->createCharacter("Ghost", GHOST_TAG);
+	enemy = cm->createCharacter("Ghost", GHOST_TAG, 40.0);
 
 	//generate random spawn point
 	srand (time(NULL));
@@ -171,6 +171,8 @@ void AIWindow::keyEvent(unsigned char key,int x,int y){
 
 	keyStates[key] = true;
 
+	if(key == '1')
+		debug = !debug;
 }
 
 void AIWindow::keyUpEvent(unsigned char key,int x,int y){

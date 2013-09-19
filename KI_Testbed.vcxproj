@@ -115,6 +115,7 @@
     <ClCompile Include="src\steering\Hide.cpp" />
     <ClCompile Include="src\steering\Idle.cpp" />
     <ClCompile Include="src\steering\LookWhereYoureGoing.cpp" />
+    <ClCompile Include="src\steering\ObstacleAvoidance.cpp" />
     <ClCompile Include="src\steering\Patrol.cpp" />
     <ClCompile Include="src\steering\Seek.cpp" />
     <ClCompile Include="src\steering\Wander.cpp" />
@@ -148,6 +149,7 @@
     <ClInclude Include="src\steering\Hide.h" />
     <ClInclude Include="src\steering\Idle.h" />
     <ClInclude Include="src\steering\LookWhereYoureGoing.h" />
+    <ClInclude Include="src\steering\ObstacleAvoidance.h" />
     <ClInclude Include="src\steering\Patrol.h" />
     <ClInclude Include="src\steering\Seek.h" />
     <ClInclude Include="src\steering\Steering.h" />

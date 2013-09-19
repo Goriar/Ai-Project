@@ -5,6 +5,7 @@ class Character;
 class MoveComponent;
 class FieldOfHideComponent;
 class Hide;
+class ObstacleAvoidance;
 
 namespace BehaviourTree{
 	class TaskHideFromPlayer : public TaskNode

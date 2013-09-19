@@ -5,6 +5,7 @@ class Character;
 class MoveComponent;
 class Seek;
 class FieldOfViewComponent;
+class ObstacleAvoidance;
 
 namespace BehaviourTree{
 	class TaskPursuePlayer : public TaskNode
@@ -23,7 +24,8 @@ namespace BehaviourTree{
 		BehaviourTree::Behaviour  *behaviour;
 
 		MoveComponent *moveComp;
-		Seek *seekBehaviour;
+		//Seek * seekBehaviour;
+		ObstacleAvoidance *seekBehaviour;
 		Character *player;
 		FieldOfViewComponent *fov;
 	};

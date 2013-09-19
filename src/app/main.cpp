@@ -5,7 +5,7 @@
 #include <GL/glut.h>
 #include <time.h>
 
-bool debug = false;
+bool debug = true;
 
 AIWindow *g_pMainWindow = 0;
 

@@ -3,6 +3,7 @@
 #include "core\CharacterManager.h"
 #include "components\MoveComponent.h"
 #include "steering\Seek.h"
+#include "steering\ObstacleAvoidance.h"
 #include "components\FieldOfViewComponent.h"
 
 using namespace BehaviourTree;
@@ -15,7 +16,8 @@ TaskPursuePlayer::TaskPursuePlayer(Behaviour *b, ParentNode *p, Character *c)
 	behaviour = b;
 
 	moveComp = getComponent<MoveComponent>(character);
-	seekBehaviour = new Seek(NULL);
+	//seekBehaviour = new Seek(NULL);
+	seekBehaviour = new ObstacleAvoidance(NULL);
 	player = CharacterManager::instance()->getNearestCharacter(character->getPosition(),PLAYER_TAG);
 	fov = getComponent<FieldOfViewComponent>(player);
 }
