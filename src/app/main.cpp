@@ -21,7 +21,7 @@ void move(int x, int y)                         { g_pMainWindow->mouseMoveEvent(
 int main(int argc, char* argv[])
 {
 	glutInit(&argc, argv);
-	glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB);
+	glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
  
 	g_pMainWindow = new AIWindow();
 	glutDisplayFunc(display); 

@@ -76,9 +76,9 @@ void FieldOfViewComponent::draw()
 	glColor3f(1.0,0.0,0.0);
 	glDisable(GL_TEXTURE_2D);
 	glBegin(GL_TRIANGLES);
-	glVertex3d(0.0,0.0, -0.2f);
-	glVertex3d(v1[0],v1[1], -0.2f);
-	glVertex3d(v2[0],v2[1], -0.2f);
+	glVertex3d(0.0,0.0, DRAW_LAYER1);
+	glVertex3d(v1[0],v1[1], DRAW_LAYER1);
+	glVertex3d(v2[0],v2[1], DRAW_LAYER1);
 	glEnd();
 
 	glPopMatrix();

@@ -84,9 +84,8 @@ void GlutWindow::idle(){
 
 void GlutWindow::initializeGL()
 {
-//  	glClearDepth(1.0f);
-//glDepthFunc(GL_LESS);
-//glEnable(GL_DEPTH_TEST);
+   glEnable(GL_DEPTH_TEST);
+   glDepthFunc(GL_LEQUAL);
 }
 
 bool GlutWindow::handleButtonEvent(int button, int state, int x, int y) {

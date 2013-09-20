@@ -28,10 +28,10 @@ void SpriteComponent::draw() {
 	sprite->bind();
 	
 	glBegin(GL_QUADS);
-	glTexCoord2d(0.0, 1.0); glVertex3d(-size, -size, -0.1);
-	glTexCoord2d(0.0, 0.0); glVertex3d(-size,  size, -0.1);
-	glTexCoord2d(1.0, 0.0); glVertex3d( size,  size, -0.1);
-	glTexCoord2d(1.0, 1.0); glVertex3d( size, -size, -0.1);
+	glTexCoord2d(0.0, 1.0); glVertex3d(-size, -size, DRAW_LAYER2);
+	glTexCoord2d(0.0, 0.0); glVertex3d(-size,  size, DRAW_LAYER2);
+	glTexCoord2d(1.0, 0.0); glVertex3d( size,  size, DRAW_LAYER2);
+	glTexCoord2d(1.0, 1.0); glVertex3d( size, -size, DRAW_LAYER2);
 	glEnd();
 
 	glDisable(GL_TEXTURE_2D);

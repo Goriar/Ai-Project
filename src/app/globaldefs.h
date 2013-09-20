@@ -27,6 +27,12 @@
 
 #define GHOST_PLAYER_DIST (120.0)
 
+#define DRAW_LAYER1 (-0.1)
+#define DRAW_LAYER2 (-0.2)
+#define DRAW_LAYER3 (-0.3)
+#define DRAW_LAYER4 (-0.4)
+#define DRAW_LAYER5 (-0.5)
+
 enum Tags { 
 	NO_TAG,
 	PLAYER_TAG,
@@ -49,6 +55,7 @@ enum Ghost_state {
 	SEEK,
 	FLEE
 };
+
 
 extern bool debug;
 
