@@ -1,5 +1,6 @@
 #include "Hide.h"
 #include "components\MoveComponent.h"
+#include "steering\ObstacleAvoidance.h"
 
 Hide::Hide(CVector pos)
 {
@@ -24,6 +25,8 @@ void Hide::apply(MoveComponent *self)
 	accel *= self->getMaxAccel();
 
 	self->setAccel(accel);
+
+	ObstacleAvoidance::avoideObstacles(self);
 }
 
 void Hide::retarget(CVector pos)

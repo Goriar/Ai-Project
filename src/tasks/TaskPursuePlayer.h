@@ -24,8 +24,7 @@ namespace BehaviourTree{
 		BehaviourTree::Behaviour  *behaviour;
 
 		MoveComponent *moveComp;
-		//Seek * seekBehaviour;
-		ObstacleAvoidance *seekBehaviour;
+		Seek * seekBehaviour;
 		Character *player;
 		FieldOfViewComponent *fov;
 	};

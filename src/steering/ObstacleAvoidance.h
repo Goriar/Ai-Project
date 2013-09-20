@@ -12,6 +12,7 @@ public:
 	virtual void apply(MoveComponent *);
 	virtual void debugDraw(MoveComponent *);
 	void retarget(Character *c) { target = c; }
+	static void avoideObstacles(MoveComponent *);
 
 protected:
 	double box_length;

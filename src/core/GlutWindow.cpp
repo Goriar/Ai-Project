@@ -18,12 +18,13 @@ GlutWindow::GlutWindow(void)
 
 	nWidth = 1024;
 	nHeight = 800;
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
+	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGB);
 	glutInitWindowSize (nWidth,nHeight); 
 	glutInitWindowPosition (0, 0);
 	glutCreateWindow ("Physics Window");
 	
 	initializeGL();
+
 }
 
 GlutWindow::~GlutWindow(void)
@@ -83,7 +84,9 @@ void GlutWindow::idle(){
 
 void GlutWindow::initializeGL()
 {
-  	
+//  	glClearDepth(1.0f);
+//glDepthFunc(GL_LESS);
+//glEnable(GL_DEPTH_TEST);
 }
 
 bool GlutWindow::handleButtonEvent(int button, int state, int x, int y) {

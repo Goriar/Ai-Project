@@ -26,11 +26,12 @@ void ObstacleAvoidance::apply(MoveComponent *self) {
 
 	self->setAccel(accel);
 
-	///////////////////////////////////////////////////////
+	///////////////////////////////// CA VERSION 1  //////////////////////
 
-	// 1. find all near distance obstacles
+	/*// 1. find all near distance obstacles
 	Character* ghost = target->getCharacterManager()->getCharacter("Ghost");
 	double size = 300.0f;
+
 	// detection box
 	double ghostRadius = sqrtf(2* (ghost->getSize()/2)*(ghost->getSize()/2) );
 	box_length = MIN_BOX_LENGTH + (self->getVelocity().getLength()/self->getMaxVelocity()) * MIN_BOX_LENGTH;
@@ -52,7 +53,7 @@ void ObstacleAvoidance::apply(MoveComponent *self) {
 			Character *c = (*it);
 			// calculate obstacle position in local space
 			CVector localPos = CVector(self->getPosition()[0] - c->getPosition()[0], self->getPosition()[1] - c->getPosition()[1] );
-			obstacleRadius = sqrtf(2*  (c->getSize()/2)*(c->getSize()/2)) + 30;
+			obstacleRadius = sqrtf(2*  (c->getSize()/2)*(c->getSize()/2));
 
 	
 				glColor4d(0.0,1.0,0.2,1.0);
@@ -99,22 +100,35 @@ void ObstacleAvoidance::apply(MoveComponent *self) {
 		// found one, now calculate the steering force (breaking force and lateral force)
 		if(closestInstersectingObstacle != NULL)
 		{
-			cout << "nearest: " << closestInstersectingObstacle->getName() << endl;
-			CVector steeringAcceleration;
-			
-			double multiplier = 1.0 + (box_length - localPosOfClosestObstacle[0]) / box_length;
+			CVector look = self->getVelocity() * box_length;
+			CVector dist = closestInstersectingObstacle->getPosition() - self->getPosition();
 
-			// lateral force
-			steeringAcceleration[1] = (obstacleRadius - localPosOfClosestObstacle[1]) * multiplier;
+			CVector redirect = look - dist;
 
-			// breaking force
-			const double breakingWeight = 0.2f;
+			glColor3f(1.0, 0.0, 0.0);
+			glBegin(GL_LINE_STRIP);
+				glVertex2d( self->getPosition()[0], self->getPosition()[1] );
+				glVertex2d( redirect[0], redirect[1] );
+			glEnd();
 
-			steeringAcceleration[0] = (obstacleRadius - localPosOfClosestObstacle[0]) * breakingWeight;
+			self->setAccel(-redirect);
 
-			// set acceleration
-			CVector worldAcc = CVector( closestInstersectingObstacle->getPosition()[0] + steeringAcceleration[0], closestInstersectingObstacle->getPosition()[1] + steeringAcceleration[1]);
-			self->setAccel( worldAcc );
+			//cout << "nearest: " << closestInstersectingObstacle->getName() << endl;
+			//CVector steeringAcceleration;
+			//
+			//double multiplier = 1.0 + (box_length - localPosOfClosestObstacle[0]) / box_length;
+
+			//// lateral force
+			//steeringAcceleration[1] = (obstacleRadius - localPosOfClosestObstacle[1]) * multiplier;
+
+			//// breaking force
+			//const double breakingWeight = 0.2f;
+
+			//steeringAcceleration[0] = (obstacleRadius - localPosOfClosestObstacle[0]) * breakingWeight;
+
+			//// set acceleration
+			//CVector worldAcc = CVector( closestInstersectingObstacle->getPosition()[0] + steeringAcceleration[0], closestInstersectingObstacle->getPosition()[1] + steeringAcceleration[1]);
+			//self->setAccel( worldAcc );
 
 			// distance between ghost and nearest intersection obstacle
 			//CVector dist = self->getPosition() - closestInstersectingObstacle->getPosition();
@@ -129,12 +143,79 @@ void ObstacleAvoidance::apply(MoveComponent *self) {
 			//self->setAccel(reflection);
 		}
 
+	}*/
+
+}
+
+void ObstacleAvoidance::avoideObstacles(MoveComponent *self)
+{
+		//////////////////////// CA SIMPLIFIED ///////////////////////////////
+
+	const float MAX_LOOK_AHEAD = 5;
+	const float NEARBY_OBSTACLE_DISTANCE = 300.0f;
+	const float MAX_AVOIDANCE_FORCE = 2000.0f;
+
+	//cout << "v: " << self->getVelocity().getLength() << endl;
+
+	CVector velocity = self->getVelocity();
+	CVector ghostPosition = self->getPosition();
+	velocity.normalize();
+	CVector ahead = ghostPosition + velocity * MAX_LOOK_AHEAD;
+	CVector ahead2 = ahead * 0.5;
+
+	// draw look ahead vector
+	glColor3f(0.0, 1.0, 0.0);
+	glBegin(GL_LINE_STRIP);
+		glVertex2d( ghostPosition[0], ghostPosition[1] );
+		glVertex2d( ahead[0], ahead[1] );
+	glEnd();
+	
+	// find obstacles in near distance
+	CharacterManager* cm = CharacterManager::instance();
+	vector<Character*> obstacles = cm->getAllNearbyCharacters(self->getPosition(), OBSTACLE_TAG, NEARBY_OBSTACLE_DISTANCE);
+
+	if(obstacles.size() != 0)
+	{
+		Character* closestInstersectingObstacle = NULL;
+		double distToClosestObstacle = 99999999;
+
+		vector<Character *>::iterator it = obstacles.begin();
+	
+		while(it != obstacles.end())
+		{
+			// find the nearest obstacle
+			Character *c = (*it);
+			
+			if( (c->getPosition() - ghostPosition).getLength() < distToClosestObstacle)
+			{
+				distToClosestObstacle = (c->getPosition() - ghostPosition).getLength();
+				closestInstersectingObstacle = c;
+			}
+			++it;
+		}
+
+		if(closestInstersectingObstacle != NULL)
+		{
+			// check if the line and circle intesect
+			double obstacleRadius = sqrtf(2*  (closestInstersectingObstacle->getSize()/2)*(closestInstersectingObstacle->getSize()/2)) + 20;
+			
+			// if vector ahead or ahead2 distance to the circle center is lesser than the radius -> collision
+			if( (closestInstersectingObstacle->getPosition() - ahead).getLength() <= obstacleRadius || (closestInstersectingObstacle->getPosition() - ahead2).getLength() <= obstacleRadius )
+			{
+				// calculate acceleration
+				CVector avoidance_force = ahead - closestInstersectingObstacle->getPosition();
+				avoidance_force.normalize();
+				avoidance_force*= MAX_AVOIDANCE_FORCE;
+
+				self->setAccel(avoidance_force);
+			}
+		}
 	}
 }
 
 void ObstacleAvoidance::debugDraw(MoveComponent *mc)
 {
-	double box_length = MIN_BOX_LENGTH + (mc->getVelocity().getLength()/mc->getMaxVelocity()) * MIN_BOX_LENGTH;
+	/*double box_length = MIN_BOX_LENGTH + (mc->getVelocity().getLength()/mc->getMaxVelocity()) * MIN_BOX_LENGTH;
 
 	CVector pos = mc->getPosition();
 
@@ -166,6 +247,6 @@ void ObstacleAvoidance::debugDraw(MoveComponent *mc)
 		glVertex2d( x2, y2);
 	glEnd();
 
-	glPopMatrix();
+	glPopMatrix();*/
 
 }

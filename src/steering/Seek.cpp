@@ -6,6 +6,7 @@
 #include "steering\Wander.h";
 #include "steering\Idle.h"
 #include "steering\Patrol.h"
+#include "steering\ObstacleAvoidance.h"
 
 #include "assert.h"
 
@@ -24,22 +25,13 @@ void Seek::apply(MoveComponent *self) {
 	CVector desiredPosition = target->getPosition();
 	CVector desiredVelocity = desiredPosition-currentPosition;
 	
-	//cout << "length: " << desiredVelocity.getLength() << endl;
-	//if(desiredVelocity.getLength() <=  GHOST_PLAYER_DIST)
-	//{// ändere Verhalten
-	//	self->setVelocity(CVector(0.0f,0.0f));
-	//	self->setAccel(CVector(0.0f,0.0f));
-	//	self->setPositionSteering(new Idle(self->getPosition()));
-	//	
-	//	return;
-	//}
-	// move with maximum acceleration
 	CVector accel = (desiredVelocity-currentVelocity);
 	accel.normalize();
 	accel *= self->getMaxAccel();
 
 	self->setAccel(accel);
 
+	ObstacleAvoidance::avoideObstacles(self);
 }
 
 void Seek::debugDraw(MoveComponent *mc)

@@ -16,8 +16,7 @@ TaskPursuePlayer::TaskPursuePlayer(Behaviour *b, ParentNode *p, Character *c)
 	behaviour = b;
 
 	moveComp = getComponent<MoveComponent>(character);
-	//seekBehaviour = new Seek(NULL);
-	seekBehaviour = new ObstacleAvoidance(NULL);
+	seekBehaviour = new Seek(NULL);
 	player = CharacterManager::instance()->getNearestCharacter(character->getPosition(),PLAYER_TAG);
 	fov = getComponent<FieldOfViewComponent>(player);
 }
