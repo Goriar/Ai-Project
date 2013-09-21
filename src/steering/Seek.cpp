@@ -3,7 +3,7 @@
 #include "app\globaldefs.h"
 #include "components\MoveComponent.h"
 
-#include "steering\Wander.h";
+#include "steering\Wander.h"
 #include "steering\Idle.h"
 #include "steering\Patrol.h"
 #include "steering\ObstacleAvoidance.h"

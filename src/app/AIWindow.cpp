@@ -67,7 +67,7 @@ AIWindow::AIWindow()
 
 AIWindow::~AIWindow(void)
 {
-	delete [] behaviour;
+	
 }
 
 void AIWindow::createPlayer(){
@@ -104,7 +104,10 @@ void AIWindow::createEnemy(){
 	CharacterManager *cm = CharacterManager::instance();
 
 	for(int i = 0; i<NUMBER_OF_GHOSTS; ++i){
-		enemy[i] = cm->createCharacter("Ghost"+i, GHOST_TAG, 40.0);
+		stringstream sstr;
+		sstr << "Ghost" << i;
+		string ghostName = sstr.str();
+		enemy[i] = cm->createCharacter(ghostName, GHOST_TAG, 40.0);
 
 		//generate random spawn point
 		srand (time(NULL));
