@@ -26,10 +26,10 @@ protected:
 	bool bDragging;
 	Character *dragCharacter;
 	Character *player;
-	Character *enemy;
+	Character *enemy[NUMBER_OF_GHOSTS];
 	CVector *fov;
 	bool* keyStates;
-	BehaviourTree::Behaviour *behaviour;
+	BehaviourTree::Behaviour *behaviour[NUMBER_OF_GHOSTS];
 
 	void createBehaviour();
 	double getTimeDelta();

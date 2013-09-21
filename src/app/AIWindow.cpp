@@ -25,6 +25,7 @@
 
 #include "tasks\TaskHideFromPlayer.h"
 #include "tasks\TaskPursuePlayer.h"
+#include "tasks\TaskSurroundPlayer.h"
 
 using namespace BehaviourTree;
 
@@ -35,10 +36,15 @@ using namespace BehaviourTree;
 
 void AIWindow::createBehaviour() {
 
-	behaviour = new Behaviour();
-	Selector *huntSelector = new Selector(behaviour);
-	TaskPursuePlayer *pursue = new TaskPursuePlayer(behaviour,huntSelector,enemy);
-	TaskHideFromPlayer *hide = new TaskHideFromPlayer(behaviour,huntSelector,enemy);
+
+	for(int i = 0; i<NUMBER_OF_GHOSTS; ++i){
+		behaviour[i] = new Behaviour();
+		Selector *huntSelector = new Selector(behaviour[i]);
+		Sequence *huntSequence = new Sequence(huntSelector);
+		TaskSurroundPlayer *surround = new TaskSurroundPlayer(behaviour[i],huntSequence,enemy[i]);
+		TaskPursuePlayer *pursue = new TaskPursuePlayer(behaviour[i],huntSequence,enemy[i]);
+		TaskHideFromPlayer *hide = new TaskHideFromPlayer(behaviour[i],huntSelector,enemy[i]);
+	}
 
 }
 
@@ -61,7 +67,7 @@ AIWindow::AIWindow()
 
 AIWindow::~AIWindow(void)
 {
-	delete behaviour;
+	delete [] behaviour;
 }
 
 void AIWindow::createPlayer(){
@@ -97,25 +103,27 @@ void AIWindow::createPlayer(){
 void AIWindow::createEnemy(){
 	CharacterManager *cm = CharacterManager::instance();
 
-	enemy = cm->createCharacter("Ghost", GHOST_TAG, 40.0);
+	for(int i = 0; i<NUMBER_OF_GHOSTS; ++i){
+		enemy[i] = cm->createCharacter("Ghost"+i, GHOST_TAG, 40.0);
 
-	//generate random spawn point
-	srand (time(NULL));
-	int w = (rand() % nWidth);
-	int h = (rand() % nHeight);
+		//generate random spawn point
+		srand (time(NULL));
+		int w = (rand() % nWidth);
+		int h = (rand() % nHeight);
 
-	enemy->setPosition(CVector(w,h));
+		enemy[i]->setPosition(CVector(w,h));
 
-	Sprite *sprite = new Sprite("..\\input\\ghost.png");
-	SpriteComponent *sc = new SpriteComponent(enemy,sprite);
+		Sprite *sprite = new Sprite("..\\input\\ghost.png");
+		SpriteComponent *sc = new SpriteComponent(enemy[i],sprite);
 
-	// create a move component for it
-	MoveComponent *mc = new MoveComponent(enemy);
-	mc->setMaxVelocity(200.0);
-	mc->setAngularSteering(new LookWhereYoureGoing());
-	//mc->setPositionSteering(new Seek(cm->getCharacter("Player")));
+		// create a move component for it
+		MoveComponent *mc = new MoveComponent(enemy[i]);
+		mc->setMaxVelocity(200.0);
+		mc->setAngularSteering(new LookWhereYoureGoing());
+		//mc->setPositionSteering(new Seek(cm->getCharacter("Player")));
 
-	//GhostBehaviourComponent *ghostBehaviour = new GhostBehaviourComponent(enemy, mc, cm, GHOST_BEH);
+		//GhostBehaviourComponent *ghostBehaviour = new GhostBehaviourComponent(enemy, mc, cm, GHOST_BEH);
+	}
 
 }
 
@@ -146,7 +154,9 @@ void AIWindow::renderFrame() {
 	CharacterManager *cm = CharacterManager::instance();
 	
 	cm->update(timeDelta);
-	behaviour->update(timeDelta);
+	for(int i = 0; i < NUMBER_OF_GHOSTS; ++i){
+		behaviour[i]->update(timeDelta);
+	}
 
 	cm->draw();
 

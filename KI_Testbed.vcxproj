@@ -121,6 +121,7 @@
     <ClCompile Include="src\steering\Wander.cpp" />
     <ClCompile Include="src\tasks\TaskHideFromPlayer.cpp" />
     <ClCompile Include="src\tasks\TaskPursuePlayer.cpp" />
+    <ClCompile Include="src\tasks\TaskSurroundPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\behaviour\Behaviour.h" />
@@ -156,6 +157,7 @@
     <ClInclude Include="src\steering\Wander.h" />
     <ClInclude Include="src\tasks\TaskHideFromPlayer.h" />
     <ClInclude Include="src\tasks\TaskPursuePlayer.h" />
+    <ClInclude Include="src\tasks\TaskSurroundPlayer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -85,6 +85,9 @@
     <ClCompile Include="src\steering\ObstacleAvoidance.cpp">
       <Filter>steering</Filter>
     </ClCompile>
+    <ClCompile Include="src\tasks\TaskSurroundPlayer.cpp">
+      <Filter>tasks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\app\AIWindow.h">
@@ -185,6 +188,9 @@
     </ClInclude>
     <ClInclude Include="src\steering\ObstacleAvoidance.h">
       <Filter>steering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tasks\TaskSurroundPlayer.h">
+      <Filter>tasks</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
