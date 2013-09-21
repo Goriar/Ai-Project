@@ -84,6 +84,25 @@ void FieldOfViewComponent::draw()
 	glPopMatrix();
 
 	glColor4d(1.0,1.0,1.0,1.0);
+
+	if (!debug) {
+		vector<Character *> nearbyCharacters = parent->getCharacterManager()->getNearbyCharacters(parent->getPosition(),MAX_VIEW_FIELD_LENGTH+50.0);
+		vector<Character *>::iterator it = nearbyCharacters.begin();
+		while(it!=nearbyCharacters.end()){
+			Character *c = (*it);
+			it++;
+			double size = c->getSize();
+			CVector p = c->getPosition() - parent->getPosition();
+			CVector v1 = CVector(p[0]-size,p[1]+size);
+			CVector v2 = CVector(p[0]+size,p[1]+size);
+			CVector v3 = CVector(p[0]-size,p[1]-size);
+			CVector v4 = CVector(p[0]+size,p[1]-size);
+
+			if(pointInView(v1)||pointInView(v2)||pointInView(v3)||pointInView(v4)){
+				c->draw();
+			}
+		}
+	}
 }
 
 

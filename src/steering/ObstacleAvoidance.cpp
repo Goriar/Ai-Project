@@ -45,11 +45,13 @@ void ObstacleAvoidance::avoideObstacles(MoveComponent *self)
 	CVector ahead2 = ahead * 0.5;
 
 	// draw look ahead vector
-	glColor3f(0.0, 1.0, 0.0);
-	glBegin(GL_LINE_STRIP);
-		glVertex2d( ghostPosition[0], ghostPosition[1] );
-		glVertex2d( ahead[0], ahead[1] );
-	glEnd();
+	if (debug) {
+		glColor3f(0.0, 1.0, 0.0);
+		glBegin(GL_LINE_STRIP);
+			glVertex2d( ghostPosition[0], ghostPosition[1] );
+			glVertex2d( ahead[0], ahead[1] );
+		glEnd();
+	}
 	
 	// find obstacles in near distance
 	CharacterManager* cm = CharacterManager::instance();
@@ -79,15 +81,16 @@ void ObstacleAvoidance::avoideObstacles(MoveComponent *self)
 		{
 			// check if the line and circle intesect
 			double obstacleRadius = sqrtf(2*  (closestInstersectingObstacle->getSize()/2)*(closestInstersectingObstacle->getSize()/2)) + 20;
-			
-			glColor4d(0.0,1.0,0.2,1.0);
-			glBegin(GL_LINE_LOOP);
-			for(int i = 0; i < 360; i+=10) {
-				double angle = DEG_TO_RAD(i);
-				CVector v = closestInstersectingObstacle->getPosition() + obstacleRadius * CVector(sin(angle),cos(angle));
-				glVertex2d(v[0],v[1]);
+			if (debug) {
+				glColor4d(0.0,1.0,0.2,1.0);
+				glBegin(GL_LINE_LOOP);
+				for(int i = 0; i < 360; i+=10) {
+					double angle = DEG_TO_RAD(i);
+					CVector v = closestInstersectingObstacle->getPosition() + obstacleRadius * CVector(sin(angle),cos(angle));
+					glVertex2d(v[0],v[1]);
+				}
+				glEnd();
 			}
-			glEnd();
 
 
 			// if vector ahead or ahead2 distance to the circle center is lesser than the radius -> collision

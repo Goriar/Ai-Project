@@ -1,6 +1,7 @@
 #pragma once
 #include "core\Singleton.h"
 #include "mathutil\Vector.h"
+#include "app\globaldefs.h"
 #include <map>
 #include <string>
 #include <vector>
@@ -16,7 +17,8 @@ public:
 	void deleteCharacter(const string &name);
 
 	Character *getNearestCharacter(CVector vec, unsigned int tag = 0, double maxDistance = DBL_MAX); 
-	vector<Character *> getAllNearbyCharacters(CVector vec, unsigned int tag = 0, double maxDistance = DBL_MAX); 
+	vector<Character *> getAllNearbyCharacters(CVector vec, unsigned int tag = 0, double maxDistance = DBL_MAX);
+	vector<Character *> getNearbyCharacters(CVector vec, double maxDistance = DBL_MAX);
 	Character *getCharacter(string name);
 	void draw();
 	void update(double deltaTime);

@@ -26,11 +26,14 @@ void CharacterManager::deleteCharacter(const string &name) {
 }
 
 void CharacterManager::draw() {
-
-	map<string,Character*>::iterator it = characters.begin();
-	while(it != characters.end()) {
-		it->second->draw();
-		it++;
+	if (debug) {
+		map<string,Character*>::iterator it = characters.begin();
+		while(it != characters.end()) {
+			it->second->draw();
+			it++;
+		}
+	} else {
+		this->getCharacter("Player")->draw();
 	}
 }
 
@@ -100,4 +103,23 @@ Character *CharacterManager::getCharacter(string name) {
 	}
 
 	return NULL;
+}
+
+vector<Character *> CharacterManager::getNearbyCharacters(CVector vec, double maxDistance) {
+
+	nearbyCharacters.clear();
+	map<string,Character*>::iterator it = characters.begin();
+	while(it != characters.end()) {
+
+		Character *c = it->second;
+		it++;
+		
+		// check for maxDistance
+		double dist = (c->getPosition() - vec).getLength();
+		if (dist > maxDistance) continue;
+
+		nearbyCharacters.push_back(c);
+	}
+
+	return nearbyCharacters;
 }
