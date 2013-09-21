@@ -25,7 +25,7 @@
 #define MAX_ENERGY (30.0)
 #define MIN_ENERGY (5.0)
 
-#define NUMBER_OF_GHOSTS (2)
+#define NUMBER_OF_GHOSTS (3)
 #define GHOST_PLAYER_DIST (120.0)
 
 #define SURROUND_RADIUS (250.0)
