@@ -17,6 +17,7 @@ public:
 	void deleteCharacter(const string &name);
 
 	Character *getNearestCharacter(CVector vec, unsigned int tag = 0, double maxDistance = DBL_MAX); 
+	Character *getNearestCharacter(Character *searcher, unsigned int tag = 0, double maxDistance = DBL_MAX); 
 	vector<Character *> getAllNearbyCharacters(CVector vec, unsigned int tag = 0, double maxDistance = DBL_MAX);
 	vector<Character *> getNearbyCharacters(CVector vec, double maxDistance = DBL_MAX);
 	Character *getCharacter(string name);

@@ -37,10 +37,11 @@ void TaskSurroundPlayer::run(double deltaTime)
 {
 	calculateTargetPosition();
 	hideBehaviour->retarget(targetPosition);
-	if((character->getPosition()-player->getPosition()).getLength() <= 10.0)
+	if((targetPosition-character->getPosition()).getLength() <= 80.0 || targetPosition.isNil()||(player->getPosition()-character->getPosition()).getLength() <= MAX_VIEW_FIELD_LENGTH )
 	{
 		deactivate();
 		parent->childTerminated(this,true);
+		return;
 	}
 
 	if(fov->isCharacterSeen(character)){
@@ -58,10 +59,16 @@ void TaskSurroundPlayer::deactivate()
 
 void TaskSurroundPlayer::calculateTargetPosition()
 {
-	CVector closestAlly = CharacterManager::instance()->getNearestCharacter(character->getPosition(),GHOST_TAG)->getPosition();
+	Character *ally = CharacterManager::instance()->getNearestCharacter(character,GHOST_TAG);
 	
+	if(ally==NULL) {
+		targetPosition = CVector();
+		return;
+	}
+	CVector closestAlly = ally->getPosition();
 	CVector d = player->getPosition() - closestAlly;
-	CVector h = closestAlly - d;
+	d.normalize();
+	CVector h = closestAlly - player->getPosition();
 	double a = d * d;
 	double b = 2*(d * h);
 	double c = h*h - SURROUND_RADIUS*SURROUND_RADIUS;
@@ -69,11 +76,34 @@ void TaskSurroundPlayer::calculateTargetPosition()
 	double delta1 = (-b + sqrt(b*b - 4*a*c))/2*a;
 	double delta2 = (-b - sqrt(b*b - 4*a*c))/2*a;
 
-	closestAlly = (closestAlly - (closestAlly + delta1*d)).getLength() < (closestAlly - (closestAlly + delta2*d)).getLength() ? closestAlly + delta1*d : closestAlly + delta2*d;
+	CVector t = (closestAlly - (closestAlly + delta1*d)).getLength() < (closestAlly - (closestAlly + delta2*d)).getLength() ? closestAlly + delta1*d : closestAlly + delta2*d;
 
-	targetPosition = closestAlly - player->getPosition();
-	targetPosition[0] = SURROUND_RADIUS * sin(M_PI/4);
-	targetPosition[1] = SURROUND_RADIUS * cos(M_PI/4);
+	cout << closestAlly[0] << " " << closestAlly[1] << " " << CharacterManager::instance()->getNearestCharacter(character->getPosition(),GHOST_TAG,80.0)->getName() << endl;
+	MoveComponent *mov = getComponent<MoveComponent>(ally);
+	CVector velo = mov->getVelocity();
+	velo.normalize();
+
+	targetPosition = t - player->getPosition();
+	if((velo-character->getPosition()).getLength()>=((velo+CVector(-velo[1],velo[0]))-character->getPosition()).getLength()){
+		targetPosition[0] += (SURROUND_RADIUS * cos(90.0));
+		targetPosition[1] += (SURROUND_RADIUS * sin(90.0));
+	} else {
+		targetPosition[0] -= (SURROUND_RADIUS * cos(90.0));
+		targetPosition[1] -= (SURROUND_RADIUS * sin(90.0));
+	}
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glTranslated(player->getPosition()[0],player->getPosition()[1],0.0);
+
+	glColor3f(1.0,0.0,0.0);
+	glDisable(GL_TEXTURE_2D);
+	glBegin(GL_LINES);
+	glVertex2d(0.0,0.0);
+	glVertex2d(targetPosition[0],targetPosition[1]);
+	glEnd();
+	glPopMatrix();
+	
+
 	targetPosition += player->getPosition();
 }
 

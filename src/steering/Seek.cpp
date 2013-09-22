@@ -25,7 +25,7 @@ void Seek::apply(MoveComponent *self) {
 	CVector desiredPosition = target->getPosition();
 	CVector desiredVelocity = desiredPosition-currentPosition;
 	
-	CVector accel = (desiredVelocity-currentVelocity);
+	CVector accel = (desiredVelocity);
 	accel.normalize();
 	accel *= self->getMaxAccel();
 

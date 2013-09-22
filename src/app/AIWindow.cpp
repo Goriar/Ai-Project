@@ -41,7 +41,7 @@ void AIWindow::createBehaviour() {
 		behaviour[i] = new Behaviour();
 		Selector *huntSelector = new Selector(behaviour[i]);
 		Sequence *huntSequence = new Sequence(huntSelector);
-	//	TaskSurroundPlayer *surround = new TaskSurroundPlayer(behaviour[i],huntSequence,enemy[i]);
+		TaskSurroundPlayer *surround = new TaskSurroundPlayer(behaviour[i],huntSequence,enemy[i]);
 		TaskPursuePlayer *pursue = new TaskPursuePlayer(behaviour[i],huntSequence,enemy[i]);
 		TaskHideFromPlayer *hide = new TaskHideFromPlayer(behaviour[i],huntSelector,enemy[i]);
 	}
@@ -111,8 +111,8 @@ void AIWindow::createEnemy(){
 
 		//generate random spawn point
 		
-		int w = (rand() % nWidth);
-		int h = (rand() % nHeight);
+		int w = rand()%nWidth;
+		int h = 400;
 
 		enemy[i]->setPosition(CVector(w,h));
 
@@ -159,7 +159,7 @@ void AIWindow::renderFrame() {
 	cm->update(timeDelta);
 	for(int i = 0; i < NUMBER_OF_GHOSTS; ++i){
 		behaviour[i]->update(timeDelta);
-		std::cout << enemy[i]->getPosition()[0] << " " <<enemy[i]->getPosition()[1] << " " << enemy[i]->getName() << endl;
+		
 	}
 
 	cm->draw();

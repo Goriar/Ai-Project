@@ -165,7 +165,7 @@ void PlayerMoveComponent::quadColission()
 				}
 			} else {
 				moveVector = CVector();
-			
+				break;
 			}
 
 		}
@@ -173,7 +173,7 @@ void PlayerMoveComponent::quadColission()
 		if(!moveVector.isNil()){
 			position-=moveVector;
 			moveVector.normalize();
-			moveVector *= MAX_VELOCITY;
+			moveVector *= MAX_VELOCITY/4;
 			velocity = -moveVector;
 		}
 

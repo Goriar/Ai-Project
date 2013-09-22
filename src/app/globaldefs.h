@@ -22,13 +22,14 @@
 #define RAD_TO_DEG(a) (a * 180.0 / M_PI) 
 
 #define VIEW_DISTANCE (500.0)
+#define MAX_VIEW_FIELD_LENGTH (250.0)
 #define MAX_ENERGY (30.0)
 #define MIN_ENERGY (5.0)
 
-#define NUMBER_OF_GHOSTS (3)
+#define NUMBER_OF_GHOSTS (6)
 #define GHOST_PLAYER_DIST (120.0)
 
-#define SURROUND_RADIUS (250.0)
+#define SURROUND_RADIUS (200.0)
 
 #define DRAW_LAYER1 (-0.1)
 #define DRAW_LAYER2 (-0.2)

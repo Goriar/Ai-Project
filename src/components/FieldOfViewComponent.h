@@ -6,7 +6,6 @@
 #include "core\CharacterManager.h"
 #include <vector>
 
-#define MAX_VIEW_FIELD_LENGTH (300.0)
 
 class FieldOfViewComponent : public Component
 {

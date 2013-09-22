@@ -42,6 +42,14 @@ void TaskHideFromPlayer::run(double deltaTime)
 		deactivate();
 		parent->childTerminated(this,true);
 	}
+
+	Character* player = CharacterManager::instance()->getNearestCharacter(character->getPosition(),PLAYER_TAG);
+	if((character->getPosition() - player->getPosition()).getLength() >= MAX_VIEW_FIELD_LENGTH)
+	{
+		deactivate();
+		parent->childTerminated(this,true);
+		return;
+	}
 }
 
 void TaskHideFromPlayer::deactivate()

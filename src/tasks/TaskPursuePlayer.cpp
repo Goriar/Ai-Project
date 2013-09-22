@@ -40,12 +40,19 @@ void TaskPursuePlayer::run(double deltaTime)
 	{
 		// Player dies
 	}
+	if((character->getPosition() - player->getPosition()).getLength() >= SURROUND_RADIUS)
+	{
+		deactivate();
+		parent->childTerminated(this,true);
+		return;
+	}
 
 	if(fov->isCharacterSeen(character)){
 		deactivate();
 		parent->childTerminated(this,false);
 		return;
 	}
+	
 }
 
 void TaskPursuePlayer::deactivate()
