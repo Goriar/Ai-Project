@@ -91,6 +91,8 @@ void FieldOfViewComponent::draw()
 		while(it!=nearbyCharacters.end()){
 			Character *c = (*it);
 			it++;
+			Character *player = CharacterManager::instance()->getCharacter("Player");
+			if(c == player) continue;
 			double size = c->getSize();
 			CVector p = c->getPosition() - parent->getPosition();
 			CVector v1 = CVector(p[0]-size,p[1]+size);
