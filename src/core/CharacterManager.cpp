@@ -33,7 +33,16 @@ void CharacterManager::draw() {
 			it++;
 		}
 	} else {
+		drawingCharacters.clear();
 		this->getCharacter("Player")->draw();
+		vector<Character *>::iterator it = drawingCharacters.begin();
+		if(drawingCharacters.capacity() > 0) {
+			while(it != drawingCharacters.end()) {
+				Character *c = (*it);
+				it++;
+				c->draw();
+			}
+		}
 	}
 }
 
@@ -150,4 +159,8 @@ vector<Character *> CharacterManager::getNearbyCharacters(CVector vec, double ma
 	}
 
 	return nearbyCharacters;
+}
+
+void CharacterManager::addDrawingCharacter(Character* c) {
+	this->drawingCharacters.push_back(c);
 }

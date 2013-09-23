@@ -21,6 +21,7 @@ public:
 	vector<Character *> getAllNearbyCharacters(CVector vec, unsigned int tag = 0, double maxDistance = DBL_MAX);
 	vector<Character *> getNearbyCharacters(CVector vec, double maxDistance = DBL_MAX);
 	Character *getCharacter(string name);
+	void addDrawingCharacter(Character* c);
 	void draw();
 	void update(double deltaTime);
 
@@ -29,6 +30,7 @@ private:
 
 private:
 	map<string, Character *> characters;
+	vector<Character *> drawingCharacters;
 	vector<Character *> nearbyCharacters;
  
 };

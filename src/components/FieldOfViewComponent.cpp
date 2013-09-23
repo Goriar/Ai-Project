@@ -99,7 +99,7 @@ void FieldOfViewComponent::draw()
 			CVector v4 = CVector(p[0]+size,p[1]-size);
 
 			if(pointInView(v1)||pointInView(v2)||pointInView(v3)||pointInView(v4)){
-				c->draw();
+				parent->getCharacterManager()->addDrawingCharacter(c);
 			}
 		}
 	}
