@@ -61,7 +61,7 @@ AIWindow::AIWindow()
 	createEnemy();
 	createBehaviour();
 
-	glClearColor(1.0, 1.0, 1.0, 1.0);
+	glClearColor(0.0, 0.0, 0.0, 1.0);
 	srand(time(0));
 }
 

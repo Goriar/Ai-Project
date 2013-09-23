@@ -22,7 +22,7 @@ void FieldOfHideComponent::update(double deltaTime) {
 	
 }
 void FieldOfHideComponent::draw() {
-	if(debug)
+	if(true)
 	{
 		glColor3f(1.0,1.0,1.0);
 
@@ -92,13 +92,13 @@ void FieldOfHideComponent::draw() {
 		glPushMatrix();
 		glTranslated(position[0],position[1],0.0);
 
-		glColor3f(0.0,1.0,0.0);
+		glColor3f(0.0,0.0,0.0);
 		glDisable(GL_TEXTURE_2D);
 		glBegin(GL_POLYGON);
-		glVertex3d(v3[0],v3[1], DRAW_LAYER3);
-		glVertex3d(v4[0],v4[1], DRAW_LAYER3);
-		glVertex3d(v1[0],v1[1], DRAW_LAYER3);
-		glVertex3d(v2[0],v2[1], DRAW_LAYER3);
+		glVertex3d(v3[0],v3[1], DRAW_LAYER4);
+		glVertex3d(v4[0],v4[1], DRAW_LAYER4);
+		glVertex3d(v1[0],v1[1], DRAW_LAYER4);
+		glVertex3d(v2[0],v2[1], DRAW_LAYER4);
 		glEnd();
 
 		glPopMatrix();
