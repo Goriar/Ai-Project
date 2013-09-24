@@ -75,11 +75,13 @@ void AIWindow::createPlayer(){
 	player = cm->createCharacter("Player",PLAYER_TAG);
 	player->setPosition(CVector(nWidth/2,nHeight/2));
 
-	Sprite *sprite = new Sprite("..\\input\\player.png");
-	SpriteComponent *sc = new SpriteComponent(player,sprite);
-
 	PlayerMoveComponent *pMovComp = new PlayerMoveComponent(keyStates,player);
 	FieldOfViewComponent *fovComponent = new FieldOfViewComponent(fov,player);
+
+	Sprite *sprite = new Sprite("..\\input\\gentleman.png");
+	SpriteComponent *sc = new SpriteComponent(player,sprite);
+
+
 
 	double x = 0.0;
 	double y = 0.0;
@@ -94,9 +96,11 @@ void AIWindow::createPlayer(){
 		x = rand()%nWidth;
 		y = rand()%nHeight;
 		obstacles->setPosition(CVector(x,y));
-		Sprite *sp = new Sprite("..\\input\\trash.png");
-		SpriteComponent *spc = new SpriteComponent(obstacles,sp);
+
 		FieldOfHideComponent *fohComponent = new FieldOfHideComponent(player, cm,obstacles);
+
+		Sprite *sp = new Sprite("..\\input\\wall.png");
+		SpriteComponent *spc = new SpriteComponent(obstacles,sp);
 	}
 }
 

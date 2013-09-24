@@ -31,11 +31,8 @@
 
 #define SURROUND_RADIUS (200.0)
 
-#define DRAW_LAYER1 (-0.1)
-#define DRAW_LAYER2 (-0.2)
-#define DRAW_LAYER3 (-0.3)
-#define DRAW_LAYER4 (-0.4)
-#define DRAW_LAYER5 (-0.5)
+#define VISIBLE_CIRCLE_RADIUS (100.0)
+
 
 enum Tags { 
 	NO_TAG,

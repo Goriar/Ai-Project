@@ -36,12 +36,24 @@ void CharacterManager::draw() {
 		drawingCharacters.clear();
 		this->getCharacter("Player")->draw();
 		vector<Character *>::iterator it = drawingCharacters.begin();
-		if(drawingCharacters.capacity() > 0) {
-			while(it != drawingCharacters.end()) {
+		if(drawingCharacters.size() > 0)
+		{
+			vector<Character*> obstacles;
+			while(it != drawingCharacters.end())
+			{
 				Character *c = (*it);
+
+				if(c->getTag() == OBSTACLE_TAG)
+					obstacles.push_back(c);
+				else
+					c->draw();
 				it++;
-				c->draw();
 			}
+
+			// draw
+			for(int i = 0; i<obstacles.size(); ++i)
+				obstacles[i]->draw();
+
 		}
 	}
 }
@@ -54,6 +66,7 @@ void CharacterManager::update(double timeDelta) {
 		it++;
 	}
 }
+
 Character *CharacterManager::getNearestCharacter(CVector vec, unsigned int tag, double maxDistance) {
 	
 	Character *found = NULL;
@@ -88,7 +101,8 @@ Character *CharacterManager::getNearestCharacter(Character *searcher, unsigned i
 	double nearest = maxDistance;
 	
 	map<string,Character*>::iterator it = characters.begin();
-	
+
+
 	while(it != characters.end()) {
 
 		Character *c = it->second;
@@ -106,7 +120,6 @@ Character *CharacterManager::getNearestCharacter(Character *searcher, unsigned i
 			found = c;
 		}
 	}
-
 	return found;
 }
 

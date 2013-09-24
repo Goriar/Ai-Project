@@ -1,6 +1,7 @@
 #include "FieldOfViewComponent.h"
 #include "components\GhostBehaviourComponent.h"
 
+#include <algorithm>
 
 FieldOfViewComponent::FieldOfViewComponent(CVector* mouse, Character *c)
 {
@@ -76,9 +77,9 @@ void FieldOfViewComponent::draw()
 	glColor3f(1.0,1.0,1.0);
 	glDisable(GL_TEXTURE_2D);
 	glBegin(GL_TRIANGLES);
-	glVertex3d(0.0,0.0, DRAW_LAYER2);
-	glVertex3d(v1[0],v1[1], DRAW_LAYER2);
-	glVertex3d(v2[0],v2[1], DRAW_LAYER2);
+	glVertex2d(0.0,0.0);
+	glVertex2d(v1[0],v1[1]);
+	glVertex2d(v2[0],v2[1]);
 	glEnd();
 
 	glPopMatrix();
@@ -88,10 +89,12 @@ void FieldOfViewComponent::draw()
 	if (!debug) {
 		vector<Character *> nearbyCharacters = parent->getCharacterManager()->getNearbyCharacters(parent->getPosition(),MAX_VIEW_FIELD_LENGTH+50.0);
 		vector<Character *>::iterator it = nearbyCharacters.begin();
+		Character *player = CharacterManager::instance()->getCharacter("Player");
+
+		vector<Character *> visibleCharacters = parent->getCharacterManager()->getNearbyCharacters(player->getPosition(),VISIBLE_CIRCLE_RADIUS);
 		while(it!=nearbyCharacters.end()){
 			Character *c = (*it);
 			it++;
-			Character *player = CharacterManager::instance()->getCharacter("Player");
 			if(c == player) continue;
 			double size = c->getSize();
 			CVector p = c->getPosition() - parent->getPosition();
@@ -100,11 +103,43 @@ void FieldOfViewComponent::draw()
 			CVector v3 = CVector(p[0]-size,p[1]-size);
 			CVector v4 = CVector(p[0]+size,p[1]-size);
 
-			if(pointInView(v1)||pointInView(v2)||pointInView(v3)||pointInView(v4)){
+			// new! check a small circle around the character too
+			//CVector dist = player->getPosition() - c->getPosition();
+			//dist.normalize();
+			//double objectRadius = sqrtf(2*  (c->getSize()/2)*(c->getSize()/2));
+			//dist *= objectRadius;
+			
+
+			if(pointInView(v1)||pointInView(v2)||pointInView(v3)||pointInView(v4)/* || (dist - player->getPosition()).getLength() < VISIBLE_CIRCLE_RADIUS*/  ){
+				
+				//visibleCharacters.push_back(c);
+
 				parent->getCharacterManager()->addDrawingCharacter(c);
 			}
+
 		}
+
+		
+		//while(it!=visibleCharacters.end()){
+		//	Character *c = (*it);
+		//	it++;
+		//	parent->getCharacterManager()->addDrawingCharacter(c);
+		//}
+		//for(int i=0; i < visibleCharacters.size(); ++i)
+		//	CharacterManager::instance()->addDrawingCharacter( visibleCharacters.at(i) );
+
+
+		glColor4d(1.0,1.0,1.0,0.8);
+		glBegin(GL_POLYGON);
+			for(int i = 0; i < 360; i+=10) {
+			double angle = DEG_TO_RAD(i);
+			CVector v = player->getPosition() + VISIBLE_CIRCLE_RADIUS * CVector(sin(angle),cos(angle));
+			glVertex2d(v[0],v[1]);
+		}
+		glEnd();
 	}
+
+
 }
 
 

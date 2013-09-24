@@ -78,7 +78,7 @@ void TaskSurroundPlayer::calculateTargetPosition()
 
 	CVector t = (closestAlly - (closestAlly + delta1*d)).getLength() < (closestAlly - (closestAlly + delta2*d)).getLength() ? closestAlly + delta1*d : closestAlly + delta2*d;
 
-	cout << closestAlly[0] << " " << closestAlly[1] << " " << CharacterManager::instance()->getNearestCharacter(character->getPosition(),GHOST_TAG,80.0)->getName() << endl;
+	//cout << closestAlly[0] << " " << closestAlly[1] << " " << CharacterManager::instance()->getNearestCharacter(character->getPosition(),GHOST_TAG,80.0)->getName() << endl;
 	MoveComponent *mov = getComponent<MoveComponent>(ally);
 	CVector velo = mov->getVelocity();
 	velo.normalize();

@@ -21,7 +21,7 @@ GlutWindow::GlutWindow(void)
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGB);
 	glutInitWindowSize (nWidth,nHeight); 
 	glutInitWindowPosition (0, 0);
-	glutCreateWindow ("Physics Window");
+	glutCreateWindow ("AI Project");
 	
 	initializeGL();
 
