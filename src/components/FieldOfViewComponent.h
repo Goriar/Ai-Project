@@ -4,6 +4,7 @@
 #include "app\globaldefs.h"
 #include "components\Component.h"
 #include "core\CharacterManager.h"
+#include "components\FieldOfHideComponent.h"
 #include <vector>
 
 

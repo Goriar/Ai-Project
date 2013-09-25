@@ -58,6 +58,7 @@ AIWindow::AIWindow()
 	fov = new CVector();
 
 	createPlayer();
+	createObstacle();
 	createEnemy();
 	createBehaviour();
 
@@ -80,10 +81,9 @@ void AIWindow::createPlayer(){
 
 	Sprite *sprite = new Sprite("..\\input\\gentleman.png");
 	SpriteComponent *sc = new SpriteComponent(player,sprite);
+}
 
-
-
-
+void AIWindow::createObstacle(){
 	double x = 0.0;
 	double y = 0.0;
 	//srand (time(NULL));

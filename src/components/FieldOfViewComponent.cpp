@@ -118,6 +118,22 @@ void FieldOfViewComponent::draw()
 			CVector v2 = CVector(p[0]+size,p[1]+size);
 			CVector v3 = CVector(p[0]-size,p[1]-size);
 			CVector v4 = CVector(p[0]+size,p[1]-size);
+
+			bool hided = false;
+
+			if (c->getTag() == GHOST_TAG) {
+				vector<Character *> nearbyCharacters = parent->getCharacterManager()->getAllNearbyCharacters(parent->getPosition(),OBSTACLE_TAG,MAX_VIEW_FIELD_LENGTH+50.0);
+				vector<Character *>::iterator it = nearbyCharacters.begin();
+				while(it!=nearbyCharacters.end()){
+					Character *ob = (*it);
+					it++;
+					FieldOfHideComponent *hide = getComponent<FieldOfHideComponent>(ob);
+					if(hide->ghostInPolygon(v1,v2,v3,v4)) {
+						hided = true;
+					}
+				}
+			}
+			if(hided) continue;
 			
 			if(pointInView(v1)||pointInView(v2)||pointInView(v3)||pointInView(v4)/* || (dist - player->getPosition()).getLength() < VISIBLE_CIRCLE_RADIUS*/  ){
 				parent->getCharacterManager()->addDrawingCharacter(c);

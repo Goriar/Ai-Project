@@ -35,5 +35,6 @@ protected:
 	double getTimeDelta();
 
 	void createPlayer();
+	void createObstacle();
 	void createEnemy();
 };
