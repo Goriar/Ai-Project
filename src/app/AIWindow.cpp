@@ -84,6 +84,7 @@ void AIWindow::createPlayer(){
 }
 
 void AIWindow::createObstacle(){
+	CharacterManager *cm = CharacterManager::instance();
 	double x = 0.0;
 	double y = 0.0;
 	//srand (time(NULL));
