@@ -99,7 +99,6 @@
     <ClCompile Include="src\components\ComponentContainer.cpp" />
     <ClCompile Include="src\components\FieldOfHideComponent.cpp" />
     <ClCompile Include="src\components\FieldOfViewComponent.cpp" />
-    <ClCompile Include="src\components\GhostBehaviourComponent.cpp" />
     <ClCompile Include="src\components\MoveComponent.cpp" />
     <ClCompile Include="src\components\PlayerMoveComponent.cpp" />
     <ClCompile Include="src\components\SpriteComponent.cpp" />
@@ -121,7 +120,9 @@
     <ClCompile Include="src\steering\Wander.cpp" />
     <ClCompile Include="src\tasks\TaskHideFromPlayer.cpp" />
     <ClCompile Include="src\tasks\TaskPursuePlayer.cpp" />
+    <ClCompile Include="src\tasks\TaskRunInto.cpp" />
     <ClCompile Include="src\tasks\TaskSurroundPlayer.cpp" />
+    <ClCompile Include="src\tasks\TaskWaitForAction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\behaviour\Behaviour.h" />
@@ -132,7 +133,6 @@
     <ClInclude Include="src\components\ComponentContainer.h" />
     <ClInclude Include="src\components\FieldOfHideComponent.h" />
     <ClInclude Include="src\components\FieldOfViewComponent.h" />
-    <ClInclude Include="src\components\GhostBehaviourComponent.h" />
     <ClInclude Include="src\components\MoveComponent.h" />
     <ClInclude Include="src\components\PlayerMoveComponent.h" />
     <ClInclude Include="src\components\SpriteComponent.h" />
@@ -157,7 +157,9 @@
     <ClInclude Include="src\steering\Wander.h" />
     <ClInclude Include="src\tasks\TaskHideFromPlayer.h" />
     <ClInclude Include="src\tasks\TaskPursuePlayer.h" />
+    <ClInclude Include="src\tasks\TaskRunInto.h" />
     <ClInclude Include="src\tasks\TaskSurroundPlayer.h" />
+    <ClInclude Include="src\tasks\TaskWaitForAction.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

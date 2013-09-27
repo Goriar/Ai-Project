@@ -1,5 +1,4 @@
 #include "FieldOfViewComponent.h"
-#include "components\GhostBehaviourComponent.h"
 
 #include <algorithm>
 
@@ -40,22 +39,7 @@ void FieldOfViewComponent::update(double deltaTime)
 		CVector v4 = CVector(p[0]+size,p[1]-size);
 
 		if(pointInView(v1)||pointInView(v2)||pointInView(v3)||pointInView(v4)){
-			// BENACHRICHTIGUNG AN GEISTER EINFÜGEN
 			seenEnemies.push_back(c);
-			// finde ghost behaviour komponente
-			vector<Component *> compVec = c->attachedComponents();
-			vector<Component *>::iterator it2 = compVec.begin();
-
-			while(it2 != compVec.end())
-			{
-				Component *comp = (*it2);
-				it2++;
-
-				if(comp->getTag() == GHOST_BEH)
-					((GhostBehaviourComponent*) comp)->setState(FLEE);
-			}
-
-			//std::cout << "I SEE YOU!" << endl;
 		}
 	}
 	
@@ -121,19 +105,20 @@ void FieldOfViewComponent::draw()
 
 			bool hided = false;
 
-			if (c->getTag() == GHOST_TAG) {
-				vector<Character *> nearbyCharacters = parent->getCharacterManager()->getAllNearbyCharacters(parent->getPosition(),OBSTACLE_TAG,MAX_VIEW_FIELD_LENGTH+50.0);
-				vector<Character *>::iterator it = nearbyCharacters.begin();
-				while(it!=nearbyCharacters.end()){
-					Character *ob = (*it);
-					it++;
-					FieldOfHideComponent *hide = getComponent<FieldOfHideComponent>(ob);
-					if(hide->ghostInPolygon(v1,v2,v3,v4)) {
-						hided = true;
-					}
-				}
-			}
-			if(hided) continue;
+			///////// GHOSTS ARE INVISIBLE IN FOH ---> BUG? /////////
+			//if (c->getTag() == GHOST_TAG) {
+			//	vector<Character *> nearbyCharacters = parent->getCharacterManager()->getAllNearbyCharacters(parent->getPosition(),OBSTACLE_TAG,MAX_VIEW_FIELD_LENGTH+50.0);
+			//	vector<Character *>::iterator it = nearbyCharacters.begin();
+			//	while(it!=nearbyCharacters.end()){
+			//		Character *ob = (*it);
+			//		it++;
+			//		FieldOfHideComponent *hide = getComponent<FieldOfHideComponent>(ob);
+			//		if(hide->ghostInPolygon(v1,v2,v3,v4)) {
+			//			hided = true;
+			//		}
+			//	}
+			//}
+			//if(hided) continue;
 			
 			if(pointInView(v1)||pointInView(v2)||pointInView(v3)||pointInView(v4)/* || (dist - player->getPosition()).getLength() < VISIBLE_CIRCLE_RADIUS*/  ){
 				parent->getCharacterManager()->addDrawingCharacter(c);

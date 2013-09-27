@@ -70,9 +70,6 @@
     <ClCompile Include="src\steering\Flee.cpp">
       <Filter>steering</Filter>
     </ClCompile>
-    <ClCompile Include="src\components\GhostBehaviourComponent.cpp">
-      <Filter>components</Filter>
-    </ClCompile>
     <ClCompile Include="src\tasks\TaskHideFromPlayer.cpp">
       <Filter>tasks</Filter>
     </ClCompile>
@@ -86,6 +83,12 @@
       <Filter>steering</Filter>
     </ClCompile>
     <ClCompile Include="src\tasks\TaskSurroundPlayer.cpp">
+      <Filter>tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tasks\TaskRunInto.cpp">
+      <Filter>tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tasks\TaskWaitForAction.cpp">
       <Filter>tasks</Filter>
     </ClCompile>
   </ItemGroup>
@@ -174,9 +177,6 @@
     <ClInclude Include="src\steering\Flee.h">
       <Filter>steering</Filter>
     </ClInclude>
-    <ClInclude Include="src\components\GhostBehaviourComponent.h">
-      <Filter>components</Filter>
-    </ClInclude>
     <ClInclude Include="src\tasks\TaskHideFromPlayer.h">
       <Filter>tasks</Filter>
     </ClInclude>
@@ -190,6 +190,12 @@
       <Filter>steering</Filter>
     </ClInclude>
     <ClInclude Include="src\tasks\TaskSurroundPlayer.h">
+      <Filter>tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tasks\TaskRunInto.h">
+      <Filter>tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tasks\TaskWaitForAction.h">
       <Filter>tasks</Filter>
     </ClInclude>
   </ItemGroup>

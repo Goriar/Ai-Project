@@ -4,7 +4,7 @@
 #include "app\globaldefs.h"
 #include "components\Component.h"
 #include "core\CharacterManager.h"
-#define MAX_HIDE_FIELD_LENGTH (150)
+#define MAX_HIDE_FIELD_LENGTH (200)
 class FieldOfHideComponent :
 	public Component
 {

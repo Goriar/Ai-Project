@@ -26,13 +26,15 @@
 #define MAX_ENERGY (30.0)
 #define MIN_ENERGY (5.0)
 
-#define NUMBER_OF_GHOSTS (6)
+#define NUMBER_OF_GHOSTS_TYPE1 (6)
+#define NUMBER_OF_GHOSTS_TYPE2 (1)
 #define GHOST_PLAYER_DIST (120.0)
 
 #define SURROUND_RADIUS (200.0)
 
 #define VISIBLE_CIRCLE_RADIUS (100.0)
 
+#define GHOST_ATTENTION_RADIUS (250.0)
 
 enum Tags { 
 	NO_TAG,

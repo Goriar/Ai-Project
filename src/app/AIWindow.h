@@ -26,15 +26,17 @@ protected:
 	bool bDragging;
 	Character *dragCharacter;
 	Character *player;
-	Character *enemy[NUMBER_OF_GHOSTS];
+	Character *enemy1[NUMBER_OF_GHOSTS_TYPE1];
+	Character *enemy2[NUMBER_OF_GHOSTS_TYPE2];
 	CVector *fov;
 	bool* keyStates;
-	BehaviourTree::Behaviour *behaviour[NUMBER_OF_GHOSTS];
+	BehaviourTree::Behaviour *behaviour1[NUMBER_OF_GHOSTS_TYPE1];
+	BehaviourTree::Behaviour *behaviour2[NUMBER_OF_GHOSTS_TYPE2];
 
 	void createBehaviour();
 	double getTimeDelta();
 
 	void createPlayer();
 	void createObstacle();
-	void createEnemy();
+	void createEnemys();
 };

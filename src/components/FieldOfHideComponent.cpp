@@ -121,27 +121,28 @@ CVector FieldOfHideComponent::getCenterPosition()
 	return vec;
 }
 
-bool FieldOfHideComponent::ghostInPolygon(CVector ve1, CVector ve2, CVector ve3, CVector ve4) {
-	if (pointInPolygon(ve1, v1, v2) && pointInPolygon(ve1, v2, v3) && pointInPolygon(ve1, v3, v4) && pointInPolygon(ve1, v4, v1) &&
-		pointInPolygon(ve2, v1, v2) && pointInPolygon(ve2, v2, v3) && pointInPolygon(ve2, v3, v4) && pointInPolygon(ve2, v4, v1) &&
-		pointInPolygon(ve3, v1, v2) && pointInPolygon(ve3, v2, v3) && pointInPolygon(ve3, v3, v4) && pointInPolygon(ve3, v4, v1) &&
-		pointInPolygon(ve4, v1, v2) && pointInPolygon(ve4, v2, v3) && pointInPolygon(ve4, v3, v4) && pointInPolygon(ve4, v4, v1)) {
-			return true;}
-	return false;
-}
-bool FieldOfHideComponent::pointInPolygon(CVector v, CVector s, CVector e) {
-	if (v[1] == s[1] == e[1]) return true;
-	if (s[1] > e[1]) {
-		float tmp = s[1];
-		float tmp2 = s[0];
-		s[1] = e[1];
-		s[0] = e[0];
-		e[1] = tmp;
-		e[0] = tmp2;}
-	if (v[0] == s[0] && v[1] == s[1]) return true;
-	if (v[0] == e[0] && v[1] == e[1]) return true;
-	if (v[1] <= s[1] || v[1] >= e[1]) return true;
-	float tmp = (s[0]-v[0])*(e[1]-v[1])-(s[1]-v[1])*(e[0]-v[0]);
-	if (tmp <= 0) return true;
-	return false;
-}
+///////// GHOSTS ARE INVISIBLE IN FOH ---> BUG? /////////
+//bool FieldOfHideComponent::ghostInPolygon(CVector ve1, CVector ve2, CVector ve3, CVector ve4) {
+//	if (pointInPolygon(ve1, v1, v2) && pointInPolygon(ve1, v2, v3) && pointInPolygon(ve1, v3, v4) && pointInPolygon(ve1, v4, v1) &&
+//		pointInPolygon(ve2, v1, v2) && pointInPolygon(ve2, v2, v3) && pointInPolygon(ve2, v3, v4) && pointInPolygon(ve2, v4, v1) &&
+//		pointInPolygon(ve3, v1, v2) && pointInPolygon(ve3, v2, v3) && pointInPolygon(ve3, v3, v4) && pointInPolygon(ve3, v4, v1) &&
+//		pointInPolygon(ve4, v1, v2) && pointInPolygon(ve4, v2, v3) && pointInPolygon(ve4, v3, v4) && pointInPolygon(ve4, v4, v1)) {
+//			return true;}
+//	return false;
+//}
+//bool FieldOfHideComponent::pointInPolygon(CVector v, CVector s, CVector e) {
+//	if (v[1] == s[1] == e[1]) return true;
+//	if (s[1] > e[1]) {
+//		float tmp = s[1];
+//		float tmp2 = s[0];
+//		s[1] = e[1];
+//		s[0] = e[0];
+//		e[1] = tmp;
+//		e[0] = tmp2;}
+//	if (v[0] == s[0] && v[1] == s[1]) return true;
+//	if (v[0] == e[0] && v[1] == e[1]) return true;
+//	if (v[1] <= s[1] || v[1] >= e[1]) return true;
+//	float tmp = (s[0]-v[0])*(e[1]-v[1])-(s[1]-v[1])*(e[0]-v[0]);
+//	if (tmp <= 0) return true;
+//	return false;
+//}

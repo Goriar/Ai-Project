@@ -11,7 +11,6 @@
 #include "components\MoveComponent.h"
 #include "components\SpriteComponent.h"
 #include "components\FieldOfHideComponent.h"
-#include "components\GhostBehaviourComponent.h"
 
 #include "behaviour\Behaviour.h"
 #include "behaviour\Sequence.h"
@@ -26,6 +25,8 @@
 #include "tasks\TaskHideFromPlayer.h"
 #include "tasks\TaskPursuePlayer.h"
 #include "tasks\TaskSurroundPlayer.h"
+#include "tasks\TaskRunInto.h"
+#include "tasks\TaskWaitForAction.h"
 
 using namespace BehaviourTree;
 
@@ -36,14 +37,22 @@ using namespace BehaviourTree;
 
 void AIWindow::createBehaviour() {
 
-
-	for(int i = 0; i<NUMBER_OF_GHOSTS; ++i){
-		behaviour[i] = new Behaviour();
-		Selector *huntSelector = new Selector(behaviour[i]);
+	for(int i = 0; i<NUMBER_OF_GHOSTS_TYPE1; ++i){
+		behaviour1[i] = new Behaviour();
+		Selector *huntSelector = new Selector(behaviour1[i]);
 		Sequence *huntSequence = new Sequence(huntSelector);
-		TaskSurroundPlayer *surround = new TaskSurroundPlayer(behaviour[i],huntSequence,enemy[i]);
-		TaskPursuePlayer *pursue = new TaskPursuePlayer(behaviour[i],huntSequence,enemy[i]);
-		TaskHideFromPlayer *hide = new TaskHideFromPlayer(behaviour[i],huntSelector,enemy[i]);
+		TaskSurroundPlayer *surround = new TaskSurroundPlayer(behaviour1[i],huntSequence,enemy1[i]);
+		TaskPursuePlayer *pursue = new TaskPursuePlayer(behaviour1[i],huntSequence,enemy1[i]);
+		TaskHideFromPlayer *hide = new TaskHideFromPlayer(behaviour1[i],huntSelector,enemy1[i]);
+	}
+
+	for(int i=0; i < NUMBER_OF_GHOSTS_TYPE2; ++i)
+	{
+		behaviour2[i] = new Behaviour();
+		Selector *glotzSelector = new Selector(behaviour2[i]);
+		Sequence *glotzSequence = new Sequence(glotzSelector);
+		TaskWaitForAction *wait = new TaskWaitForAction(behaviour2[i], glotzSequence,enemy2[i]);
+		TaskRunInto *runInto = new TaskRunInto(behaviour2[i],glotzSequence,enemy2[i]);
 	}
 
 }
@@ -59,7 +68,7 @@ AIWindow::AIWindow()
 
 	createPlayer();
 	createObstacle();
-	createEnemy();
+	createEnemys();
 	createBehaviour();
 
 	glClearColor(0.0, 0.0, 0.0, 1.0);
@@ -106,34 +115,51 @@ void AIWindow::createObstacle(){
 	}
 }
 
-void AIWindow::createEnemy(){
+void AIWindow::createEnemys(){
 	CharacterManager *cm = CharacterManager::instance();
 
-	for(int i = 0; i<NUMBER_OF_GHOSTS; ++i){
+	// enemey type 1
+	for(int i = 0; i<NUMBER_OF_GHOSTS_TYPE1; ++i){
 		stringstream sstr;
 		sstr << "Ghost" << i;
 		string ghostName = sstr.str();
-		enemy[i] = cm->createCharacter(ghostName, GHOST_TAG, 40.0);
+		enemy1[i] = cm->createCharacter(ghostName, GHOST_TAG, 40.0);
 
 		//generate random spawn point
-		
 		int w = rand()%nWidth;
 		int h = 400;
 
-		enemy[i]->setPosition(CVector(w,h));
+		enemy1[i]->setPosition(CVector(w,h));
 
 		Sprite *sprite = new Sprite("..\\input\\ghost.png");
-		SpriteComponent *sc = new SpriteComponent(enemy[i],sprite);
+		SpriteComponent *sc = new SpriteComponent(enemy1[i],sprite);
 
 		// create a move component for it
-		MoveComponent *mc = new MoveComponent(enemy[i]);
+		MoveComponent *mc = new MoveComponent(enemy1[i]);
 		mc->setMaxVelocity(200.0);
 		mc->setAngularSteering(new LookWhereYoureGoing());
-		//mc->setPositionSteering(new Seek(cm->getCharacter("Player")));
-
-		//GhostBehaviourComponent *ghostBehaviour = new GhostBehaviourComponent(enemy, mc, cm, GHOST_BEH);
 	}
 
+	// enemey type 2
+	for(int i = 0; i<NUMBER_OF_GHOSTS_TYPE2; ++i){
+		stringstream sstr;
+		sstr << "GlotzGhost" << i;
+		string ghostName = sstr.str();
+		enemy2[i] = cm->createCharacter(ghostName, GHOST_TAG, 40.0);
+
+		int w = 800;
+		int h = 100;
+
+		enemy2[i]->setPosition(CVector(w,h));
+
+		Sprite *sprite = new Sprite("..\\input\\ghost2.png");
+		SpriteComponent *sc = new SpriteComponent(enemy2[i],sprite);
+
+		// create a move component for it
+		MoveComponent *mc = new MoveComponent(enemy2[i]);
+		mc->setMaxVelocity(200.0);
+		mc->setAngularSteering(new LookWhereYoureGoing());
+	}
 }
 
 void AIWindow::renderFrame() {
@@ -163,10 +189,10 @@ void AIWindow::renderFrame() {
 	CharacterManager *cm = CharacterManager::instance();
 	
 	cm->update(timeDelta);
-	for(int i = 0; i < NUMBER_OF_GHOSTS; ++i){
-		behaviour[i]->update(timeDelta);
-		
-	}
+	for(int i = 0; i < NUMBER_OF_GHOSTS_TYPE1; ++i){
+		behaviour1[i]->update(timeDelta);}
+	for(int i = 0; i < NUMBER_OF_GHOSTS_TYPE2; ++i){
+		behaviour2[i]->update(timeDelta);}
 
 	cm->draw();
 

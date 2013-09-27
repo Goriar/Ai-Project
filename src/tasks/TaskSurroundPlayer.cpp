@@ -33,6 +33,7 @@ void TaskSurroundPlayer::activate()
 	moveComp->setPositionSteering(hideBehaviour);
 	behaviour->activateTask(this);
 }
+
 void TaskSurroundPlayer::run(double deltaTime)
 {
 	calculateTargetPosition();
