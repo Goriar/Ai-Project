@@ -26,7 +26,7 @@ void Hide::apply(MoveComponent *self)
 
 	self->setAccel(accel);
 
-	ObstacleAvoidance::avoideObstacles(self);
+	ObstacleAvoidance::avoideObstacles(self, true);
 }
 
 void Hide::retarget(CVector pos)

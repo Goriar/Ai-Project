@@ -31,7 +31,7 @@ void Seek::apply(MoveComponent *self) {
 
 	self->setAccel(accel);
 
-	ObstacleAvoidance::avoideObstacles(self);
+	ObstacleAvoidance::avoideObstacles(self, false);
 }
 
 void Seek::debugDraw(MoveComponent *mc)
