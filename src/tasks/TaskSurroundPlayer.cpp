@@ -92,18 +92,19 @@ void TaskSurroundPlayer::calculateTargetPosition()
 		targetPosition[0] -= (SURROUND_RADIUS * cos(90.0));
 		targetPosition[1] -= (SURROUND_RADIUS * sin(90.0));
 	}
-	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
-	glTranslated(player->getPosition()[0],player->getPosition()[1],0.0);
+	if (debug) {
+		glMatrixMode(GL_MODELVIEW);
+		glPushMatrix();
+		glTranslated(player->getPosition()[0],player->getPosition()[1],0.0);
 
-	glColor3f(1.0,0.0,0.0);
-	glDisable(GL_TEXTURE_2D);
-	glBegin(GL_LINES);
-	glVertex2d(0.0,0.0);
-	glVertex2d(targetPosition[0],targetPosition[1]);
-	glEnd();
-	glPopMatrix();
-	
+		glColor3f(1.0,0.0,0.0);
+		glDisable(GL_TEXTURE_2D);
+		glBegin(GL_LINES);
+		glVertex2d(0.0,0.0);
+		glVertex2d(targetPosition[0],targetPosition[1]);
+		glEnd();
+		glPopMatrix();
+	}
 
 	targetPosition += player->getPosition();
 }
