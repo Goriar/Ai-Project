@@ -101,7 +101,7 @@ void AIWindow::createItem(){
 	srand (time(NULL));
 	x = rand()%nWidth;
 	y = rand()%nHeight;
-	item = cm->createCharacter("Item",ITEM_TAG,20.0);
+	item = cm->createCharacter("Item",ITEM_TAG,30.0);
 	item->setPosition(CVector(x,y));
 
 	while((cm->getNearestCharacter(item)->getPosition()-item->getPosition()).getLength() < 150){
@@ -110,7 +110,7 @@ void AIWindow::createItem(){
 		item->setPosition(CVector(x,y));
 	}
 	ItemComponent *itemComp = new ItemComponent(nWidth,nHeight,item);
-	Sprite *sprite = new Sprite("..\\input\\trash.png");
+	Sprite *sprite = new Sprite("..\\input\\tea.png");
 	SpriteComponent *sc = new SpriteComponent(item,sprite);
 
 }
@@ -147,11 +147,13 @@ void AIWindow::createEnemys(){
 		string ghostName = sstr.str();
 		enemy1[i] = cm->createCharacter(ghostName, GHOST_TAG, 40.0);
 
+
 		//generate random spawn point
 		int w = rand()%nWidth;
 		int h = 400;
 
 		enemy1[i]->setPosition(CVector(w,h));
+
 
 		Sprite *sprite = new Sprite("..\\input\\ghost.png");
 		SpriteComponent *sc = new SpriteComponent(enemy1[i],sprite);
