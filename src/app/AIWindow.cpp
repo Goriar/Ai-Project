@@ -128,10 +128,12 @@ void AIWindow::createObstacle(){
 		x = rand()%nWidth;
 		y = rand()%nHeight;
 		obstacles[i]->setPosition(CVector(x,y));
-		while((cm->getNearestCharacter(obstacles[i])->getPosition()-obstacles[i]->getPosition()).getLength() < 150){
-			x = rand()%nHeight;
-			y = rand()%nWidth;
-			obstacles[i]->setPosition(CVector(x,y));
+		if(i>0){
+			while((cm->getNearestCharacter(obstacles[i],OBSTACLE_TAG)->getPosition()-obstacles[i]->getPosition()).getLength() < 200){
+				x = rand()%nHeight;
+				y = rand()%nWidth;
+				obstacles[i]->setPosition(CVector(x,y));
+			}
 		}
 
 		FieldOfHideComponent *fohComponent = new FieldOfHideComponent(player, cm,obstacles[i]);
@@ -212,7 +214,7 @@ void AIWindow::reset(){
 		x = rand()%nWidth;
 		y = rand()%nHeight;
 		obstacles[i]->setPosition(CVector(x,y));
-		while((cm->getNearestCharacter(obstacles[i])->getPosition()-obstacles[i]->getPosition()).getLength() < 150){
+		while((cm->getNearestCharacter(obstacles[i],OBSTACLE_TAG)->getPosition()-obstacles[i]->getPosition()).getLength() < 200){
 			x = rand()%nHeight;
 			y = rand()%nWidth;
 			obstacles[i]->setPosition(CVector(x,y));
