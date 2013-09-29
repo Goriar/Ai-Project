@@ -20,7 +20,7 @@ void Hide::apply(MoveComponent *self)
 	CVector desiredPosition = position;
 	CVector desiredVelocity = desiredPosition-currentPosition;
 
-	CVector accel = (desiredVelocity-currentVelocity);
+	CVector accel = (desiredVelocity);
 	accel.normalize();
 	accel *= self->getMaxAccel();
 

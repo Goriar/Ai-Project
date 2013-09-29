@@ -5,6 +5,7 @@
 #include "steering\Seek.h"
 #include "steering\ObstacleAvoidance.h"
 #include "components\FieldOfViewComponent.h"
+#include "components\PlayerMoveComponent.h"
 
 using namespace BehaviourTree;
 
@@ -39,6 +40,8 @@ void TaskPursuePlayer::run(double deltaTime)
 	if((character->getPosition() - player->getPosition()).getLength() <= GHOST_PLAYER_DIST)
 	{
 		// Player dies
+		PlayerMoveComponent *movComp = getComponent<PlayerMoveComponent>(player);
+		movComp->loseHealth(5);
 	}
 	if((character->getPosition() - player->getPosition()).getLength() >= SURROUND_RADIUS)
 	{

@@ -205,7 +205,7 @@ void AIWindow::reset(){
 	CharacterManager *cm = CharacterManager::instance();
 	player->setPosition(CVector(nWidth/2,nHeight/2));
 	getComponent<PlayerMoveComponent>(cm->getCharacter("Player"))->resetScore();
-	
+	getComponent<PlayerMoveComponent>(cm->getCharacter("Player"))->resetHealth();
 	int x = 0;
 	int y = 0;
 	for (int i = 0; i <NUMBER_OF_OBSTACLES ; i++) {
@@ -295,7 +295,8 @@ void AIWindow::renderFrame() {
 	cm->draw();
 
 	int score = getComponent<PlayerMoveComponent>(cm->getCharacter("Player"))->getScore();
-	if(score>=10){
+	float health = getComponent<PlayerMoveComponent>(cm->getCharacter("Player"))->getHealth();
+	if(score>=10 || health <=0.0f){
 		reset();
 	}
 	stringstream ss;
@@ -307,6 +308,20 @@ void AIWindow::renderFrame() {
 	glColor3f(1.0f,1.0f,0.0f);
 	glScalef(0.3f,0.3f,0.3f);
 	glTranslatef(s.size(),30,0);
+	for(int i = 0; i<s.size(); ++i){
+		glutStrokeCharacter(GLUT_STROKE_ROMAN,s[i]);
+	}
+	glPopMatrix();
+
+	stringstream ss2;
+	ss2 << "Health: " <<(int)health;
+	s = ss2.str();
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glDisable(GL_TEXTURE_2D);
+	glColor3f(1.0f,1.0f,0.0f);
+	glScalef(0.3f,0.3f,0.3f);
+	glTranslatef(s.size(),140,0);
 	for(int i = 0; i<s.size(); ++i){
 		glutStrokeCharacter(GLUT_STROKE_ROMAN,s[i]);
 	}

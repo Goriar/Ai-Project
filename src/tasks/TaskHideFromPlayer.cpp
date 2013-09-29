@@ -5,6 +5,7 @@
 #include "components\MoveComponent.h"
 #include "components\FieldOfHideComponent.h"
 #include "steering\Hide.h"
+#include "components\PlayerMoveComponent.h"
 
 
 using namespace BehaviourTree;
@@ -37,13 +38,20 @@ void TaskHideFromPlayer::activate()
 
 void TaskHideFromPlayer::run(double deltaTime)
 {
+	Character *player = CharacterManager::instance()->getCharacter("Player");
+	if((character->getPosition() - player->getPosition()).getLength() <= GHOST_PLAYER_DIST)
+	{
+		// Player dies
+		PlayerMoveComponent *movComp = getComponent<PlayerMoveComponent>(player);
+		movComp->loseHealth(5);
+	}
+
 	hideBehaviour->retarget(foh->getCenterPosition());
 	if((character->getPosition()-foh->getCenterPosition()).getLength() < 20.0){
 		deactivate();
 		parent->childTerminated(this,true);
 	}
 
-	Character* player = CharacterManager::instance()->getNearestCharacter(character->getPosition(),PLAYER_TAG);
 	if((character->getPosition() - player->getPosition()).getLength() >= MAX_VIEW_FIELD_LENGTH)
 	{
 		deactivate();

@@ -40,7 +40,9 @@ public:
 
 	inline int getScore(){ return score;}
 	inline void resetScore(){score = 0;}
-
+	inline float getHealth(){ return health;};
+	inline void loseHealth(float h){health -= h;}
+	inline void resetHealth(){health = 100.0f;}
 protected:
 	CVector velocity;
 	CVector accel;
@@ -55,4 +57,5 @@ protected:
 	double maxAngularAccel;
 
 	int score;
+	float health;
 };

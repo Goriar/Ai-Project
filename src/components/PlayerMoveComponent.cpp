@@ -23,6 +23,7 @@ PlayerMoveComponent::PlayerMoveComponent(bool *keys,Character *c)
 	maxAngularAccel    = MAX_ANGULAR_ACCEL;
 	
 	score = 0;
+	health = 100.0f;
 	attachToCharacter(c);
 	active = true;
 }
