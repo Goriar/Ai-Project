@@ -85,7 +85,7 @@ AIWindow::~AIWindow(void)
 
 void AIWindow::createPlayer(){
 	CharacterManager *cm = CharacterManager::instance();
-	player = cm->createCharacter("Player",PLAYER_TAG);
+	player = cm->createCharacter("Player",PLAYER_TAG, 40);
 	player->setPosition(CVector(nWidth/2,nHeight/2));
 
 	PlayerMoveComponent *pMovComp = new PlayerMoveComponent(keyStates,player);
