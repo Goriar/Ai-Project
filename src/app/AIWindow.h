@@ -29,6 +29,7 @@ protected:
 	Character *item;
 	Character *enemy1[NUMBER_OF_GHOSTS_TYPE1];
 	Character *enemy2[NUMBER_OF_GHOSTS_TYPE2];
+	Character *obstacles[NUMBER_OF_OBSTACLES];
 	CVector *fov;
 	bool* keyStates;
 	BehaviourTree::Behaviour *behaviour1[NUMBER_OF_GHOSTS_TYPE1];
@@ -41,4 +42,5 @@ protected:
 	void createObstacle();
 	void createEnemys();
 	void createItem();
+	void reset();
 };

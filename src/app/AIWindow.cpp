@@ -119,21 +119,25 @@ void AIWindow::createObstacle(){
 	double x = 0.0;
 	double y = 0.0;
 	srand (time(NULL));
-	for (int i = 0; i <5 ; i++) {
-		Character *obstacles = NULL;
+	for (int i = 0; i <NUMBER_OF_OBSTACLES ; i++) {
 		stringstream sstr;
 		sstr << "Obstacle" << i;
 		string obsName = sstr.str();
-		obstacles = cm->createCharacter(obsName,OBSTACLE_TAG);
+		obstacles[i] = cm->createCharacter(obsName,OBSTACLE_TAG);
 		
 		x = rand()%nWidth;
 		y = rand()%nHeight;
-		obstacles->setPosition(CVector(x,y));
+		obstacles[i]->setPosition(CVector(x,y));
+		while((cm->getNearestCharacter(obstacles[i])->getPosition()-obstacles[i]->getPosition()).getLength() < 150){
+			x = rand()%nHeight;
+			y = rand()%nWidth;
+			obstacles[i]->setPosition(CVector(x,y));
+		}
 
-		FieldOfHideComponent *fohComponent = new FieldOfHideComponent(player, cm,obstacles);
+		FieldOfHideComponent *fohComponent = new FieldOfHideComponent(player, cm,obstacles[i]);
 
 		Sprite *sp = new Sprite("..\\input\\wall.png");
-		SpriteComponent *spc = new SpriteComponent(obstacles,sp);
+		SpriteComponent *spc = new SpriteComponent(obstacles[i],sp);
 	}
 }
 
@@ -150,10 +154,14 @@ void AIWindow::createEnemys(){
 
 		//generate random spawn point
 		int w = rand()%nWidth;
-		int h = 400;
+		int h = rand()%nHeight;
 
 		enemy1[i]->setPosition(CVector(w,h));
-
+		while((cm->getNearestCharacter(enemy1[i])->getPosition()-enemy1[i]->getPosition()).getLength() < 150){
+			w = rand()%nHeight;
+			h = rand()%nWidth;
+			enemy1[i]->setPosition(CVector(w,h));
+		}
 
 		Sprite *sprite = new Sprite("..\\input\\ghost.png");
 		SpriteComponent *sc = new SpriteComponent(enemy1[i],sprite);
@@ -171,10 +179,15 @@ void AIWindow::createEnemys(){
 		string ghostName = sstr.str();
 		enemy2[i] = cm->createCharacter(ghostName, GHOST_TAG, 40.0);
 
-		int w = 800;
-		int h = 100;
+		int w = rand()%nWidth;
+		int h = rand()%nHeight;
 
 		enemy2[i]->setPosition(CVector(w,h));
+		while((cm->getNearestCharacter(enemy2[i])->getPosition()-enemy2[i]->getPosition()).getLength() < 150){
+			w = rand()%nHeight;
+			h = rand()%nWidth;
+			enemy2[i]->setPosition(CVector(w,h));
+		}
 
 		Sprite *sprite = new Sprite("..\\input\\ghost2.png");
 		SpriteComponent *sc = new SpriteComponent(enemy2[i],sprite);
@@ -184,6 +197,67 @@ void AIWindow::createEnemys(){
 		mc->setMaxVelocity(200.0);
 		mc->setAngularSteering(new LookWhereYoureGoing());
 	}
+
+
+}
+
+void AIWindow::reset(){
+	CharacterManager *cm = CharacterManager::instance();
+	player->setPosition(CVector(nWidth/2,nHeight/2));
+	getComponent<PlayerMoveComponent>(cm->getCharacter("Player"))->resetScore();
+	
+	int x = 0;
+	int y = 0;
+	for (int i = 0; i <NUMBER_OF_OBSTACLES ; i++) {
+		x = rand()%nWidth;
+		y = rand()%nHeight;
+		obstacles[i]->setPosition(CVector(x,y));
+		while((cm->getNearestCharacter(obstacles[i])->getPosition()-obstacles[i]->getPosition()).getLength() < 150){
+			x = rand()%nHeight;
+			y = rand()%nWidth;
+			obstacles[i]->setPosition(CVector(x,y));
+		}
+	}
+
+	// enemey type 1
+	for(int i = 0; i<NUMBER_OF_GHOSTS_TYPE1; ++i){
+
+		//generate random spawn point
+		int w = rand()%nWidth;
+		int h = rand()%nHeight;
+
+		enemy1[i]->setPosition(CVector(w,h));
+		while((cm->getNearestCharacter(enemy1[i])->getPosition()-enemy1[i]->getPosition()).getLength() < 150){
+			w = rand()%nHeight;
+			h = rand()%nWidth;
+			enemy1[i]->setPosition(CVector(w,h));
+		}
+	}
+
+	// enemey type 2
+	for(int i = 0; i<NUMBER_OF_GHOSTS_TYPE2; ++i){
+
+		int w = rand()%nWidth;
+		int h = rand()%nHeight;
+
+		enemy2[i]->setPosition(CVector(w,h));
+		while((cm->getNearestCharacter(enemy2[i])->getPosition()-enemy2[i]->getPosition()).getLength() < 150){
+			w = rand()%nHeight;
+			h = rand()%nWidth;
+			enemy2[i]->setPosition(CVector(w,h));
+		}
+	}
+
+	x = rand()%nWidth;
+	y = rand()%nHeight;
+	item->setPosition(CVector(x,y));
+
+	while((cm->getNearestCharacter(item)->getPosition()-item->getPosition()).getLength() < 150){
+		x = rand()%nHeight;
+		y = rand()%nWidth;
+		item->setPosition(CVector(x,y));
+	}
+
 }
 
 void AIWindow::renderFrame() {
@@ -221,6 +295,9 @@ void AIWindow::renderFrame() {
 	cm->draw();
 
 	int score = getComponent<PlayerMoveComponent>(cm->getCharacter("Player"))->getScore();
+	if(score>=10){
+		reset();
+	}
 	stringstream ss;
 	ss << "Score: " <<score;
 	string s = ss.str();

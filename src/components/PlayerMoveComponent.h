@@ -39,6 +39,7 @@ public:
 	void quadColission();
 
 	inline int getScore(){ return score;}
+	inline void resetScore(){score = 0;}
 
 protected:
 	CVector velocity;
