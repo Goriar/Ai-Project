@@ -17,7 +17,7 @@ SpriteComponent::SpriteComponent(Character *c, Sprite *s) {
 }
 
 void SpriteComponent::draw() {
-
+	glColor3d(1.0, 1.0, 1.0);
 	if (parent == NULL) return;
 
 	CVector position = parent->getPosition();
