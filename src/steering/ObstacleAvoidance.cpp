@@ -51,6 +51,7 @@ void ObstacleAvoidance::avoideObstacles(MoveComponent *self)
 			glVertex2d( ghostPosition[0], ghostPosition[1] );
 			glVertex2d( ahead[0], ahead[1] );
 		glEnd();
+		glColor3f(1.0, 1.0, 1.0);
 	}
 	
 	// find obstacles in near distance

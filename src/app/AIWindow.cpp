@@ -112,8 +112,8 @@ void AIWindow::createItem(){
 	ItemComponent *itemComp = new ItemComponent(nWidth,nHeight,item);
 	Sprite *sprite = new Sprite("..\\input\\tea.png");
 	SpriteComponent *sc = new SpriteComponent(item,sprite);
-
 }
+
 void AIWindow::createObstacle(){
 	CharacterManager *cm = CharacterManager::instance();
 	double x = 0.0;
