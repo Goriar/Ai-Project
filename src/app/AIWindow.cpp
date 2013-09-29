@@ -5,12 +5,14 @@
 #include <math.h>
 #include <GL/glut.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <assert.h>
 #include <sstream>
 
 #include "components\MoveComponent.h"
 #include "components\SpriteComponent.h"
 #include "components\FieldOfHideComponent.h"
+#include "components\ItemComponent.h"
 
 #include "behaviour\Behaviour.h"
 #include "behaviour\Sequence.h"
@@ -70,6 +72,7 @@ AIWindow::AIWindow()
 	createObstacle();
 	createEnemys();
 	createBehaviour();
+	createItem();
 
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 	srand(time(0));
@@ -92,11 +95,30 @@ void AIWindow::createPlayer(){
 	SpriteComponent *sc = new SpriteComponent(player,sprite);
 }
 
+void AIWindow::createItem(){
+	CharacterManager *cm = CharacterManager::instance();
+	int x,y;
+	srand (time(NULL));
+	x = rand()%nWidth;
+	y = rand()%nHeight;
+	item = cm->createCharacter("Item",ITEM_TAG,20.0);
+	item->setPosition(CVector(x,y));
+
+	while((cm->getNearestCharacter(item)->getPosition()-item->getPosition()).getLength() < 150){
+		x = rand()%nHeight;
+		y = rand()%nWidth;
+		item->setPosition(CVector(x,y));
+	}
+	ItemComponent *itemComp = new ItemComponent(nWidth,nHeight,item);
+	Sprite *sprite = new Sprite("..\\input\\trash.png");
+	SpriteComponent *sc = new SpriteComponent(item,sprite);
+
+}
 void AIWindow::createObstacle(){
 	CharacterManager *cm = CharacterManager::instance();
 	double x = 0.0;
 	double y = 0.0;
-	//srand (time(NULL));
+	srand (time(NULL));
 	for (int i = 0; i <5 ; i++) {
 		Character *obstacles = NULL;
 		stringstream sstr;
@@ -195,6 +217,22 @@ void AIWindow::renderFrame() {
 		behaviour2[i]->update(timeDelta);}
 
 	cm->draw();
+
+	int score = getComponent<PlayerMoveComponent>(cm->getCharacter("Player"))->getScore();
+	stringstream ss;
+	ss << "Score: " <<score;
+	string s = ss.str();
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glDisable(GL_TEXTURE_2D);
+	glColor3f(1.0f,1.0f,0.0f);
+	glScalef(0.3f,0.3f,0.3f);
+	glTranslatef(s.size(),30,0);
+	for(int i = 0; i<s.size(); ++i){
+		glutStrokeCharacter(GLUT_STROKE_ROMAN,s[i]);
+	}
+	glPopMatrix();
+	glColor4d(1.0,1.0,1.0,1.0);
 
 	glutSwapBuffers();
 

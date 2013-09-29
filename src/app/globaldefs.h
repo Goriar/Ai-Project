@@ -40,7 +40,8 @@ enum Tags {
 	NO_TAG,
 	PLAYER_TAG,
 	GHOST_TAG,
-	OBSTACLE_TAG
+	OBSTACLE_TAG,
+	ITEM_TAG
 };
 
 enum Component_tag{

@@ -91,6 +91,9 @@
     <ClCompile Include="src\tasks\TaskWaitForAction.cpp">
       <Filter>tasks</Filter>
     </ClCompile>
+    <ClCompile Include="src\components\ItemComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\app\AIWindow.h">
@@ -197,6 +200,9 @@
     </ClInclude>
     <ClInclude Include="src\tasks\TaskWaitForAction.h">
       <Filter>tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\ItemComponent.h">
+      <Filter>components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

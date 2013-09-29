@@ -38,6 +38,8 @@ public:
 	void determineDirection();
 	void quadColission();
 
+	inline int getScore(){ return score;}
+
 protected:
 	CVector velocity;
 	CVector accel;
@@ -50,4 +52,6 @@ protected:
 	double maxAngularVelocity;
 	double maxAccel;
 	double maxAngularAccel;
+
+	int score;
 };

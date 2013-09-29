@@ -1,5 +1,9 @@
 #include "PlayerMoveComponent.h"
 #include "app\globaldefs.h"
+#include "components\ItemComponent.h"
+#include <GL\glut.h>
+#include <string>
+#include <sstream>
 
 PlayerMoveComponent::PlayerMoveComponent(bool *keys,Character *c)
 {
@@ -18,6 +22,7 @@ PlayerMoveComponent::PlayerMoveComponent(bool *keys,Character *c)
 	maxAngularVelocity = MAX_ANGULAR_VELOCITY;
 	maxAngularAccel    = MAX_ANGULAR_ACCEL;
 	
+	score = 0;
 	attachToCharacter(c);
 	active = true;
 }
@@ -71,6 +76,13 @@ void PlayerMoveComponent::update(double deltaTime)
 	parent->setRotation(rotation);
 
 	quadColission();
+	
+	Character *item = CharacterManager::instance()->getCharacter("Item");
+	ItemComponent *itemComp = getComponent<ItemComponent>(item);
+	if((item->getPosition()-getPosition()).getLength() < 30.0f){
+		itemComp->pickUp();
+		score++;
+	}
 }
 
 void PlayerMoveComponent::quadColission()
@@ -266,6 +278,8 @@ void PlayerMoveComponent::draw()
 
 	glColor4d(1.0,1.0,1.0,1.0);
 	*/
+	
+
 }
 
 void PlayerMoveComponent::setPosition(const CVector &vec)

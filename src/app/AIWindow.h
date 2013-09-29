@@ -26,6 +26,7 @@ protected:
 	bool bDragging;
 	Character *dragCharacter;
 	Character *player;
+	Character *item;
 	Character *enemy1[NUMBER_OF_GHOSTS_TYPE1];
 	Character *enemy2[NUMBER_OF_GHOSTS_TYPE2];
 	CVector *fov;
@@ -39,4 +40,5 @@ protected:
 	void createPlayer();
 	void createObstacle();
 	void createEnemys();
+	void createItem();
 };
