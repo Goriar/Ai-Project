@@ -4,6 +4,7 @@
 #include "core\CharacterManager.h"
 #include "components\MoveComponent.h"
 #include "components\FieldOfViewComponent.h"
+#include "components\PlayerMoveComponent.h"
 
 
 using namespace BehaviourTree;
@@ -51,6 +52,14 @@ void TaskWaitForAction::run(double deltaTime)
 		deactivate();
 		parent->childTerminated(this,true);
 		return;
+	}
+
+	Character *player = CharacterManager::instance()->getCharacter("Player");
+	if((character->getPosition() - player->getPosition()).getLength() <= GHOST_PLAYER_DIST)
+	{
+		// Player dies
+		PlayerMoveComponent *movComp = getComponent<PlayerMoveComponent>(player);
+		movComp->loseHealth(5);
 	}
 }
 

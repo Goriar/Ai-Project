@@ -43,7 +43,7 @@ void TaskHideFromPlayer::run(double deltaTime)
 	{
 		// Player dies
 		PlayerMoveComponent *movComp = getComponent<PlayerMoveComponent>(player);
-		movComp->loseHealth(5);
+		movComp->loseHealth(1);
 	}
 
 	hideBehaviour->retarget(foh->getCenterPosition());

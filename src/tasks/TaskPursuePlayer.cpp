@@ -41,7 +41,7 @@ void TaskPursuePlayer::run(double deltaTime)
 	{
 		// Player dies
 		PlayerMoveComponent *movComp = getComponent<PlayerMoveComponent>(player);
-		movComp->loseHealth(5);
+		movComp->loseHealth(1);
 	}
 	if((character->getPosition() - player->getPosition()).getLength() >= SURROUND_RADIUS)
 	{
