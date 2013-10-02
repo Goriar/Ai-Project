@@ -27,8 +27,8 @@
 #define MIN_ENERGY (5.0)
 
 #define NUMBER_OF_OBSTACLES (5)
-#define NUMBER_OF_GHOSTS_TYPE1 (6)
-#define NUMBER_OF_GHOSTS_TYPE2 (1)
+#define NUMBER_OF_GHOSTS_TYPE1 (4)
+#define NUMBER_OF_GHOSTS_TYPE2 (2)
 #define GHOST_PLAYER_DIST (25.0)
 
 #define SURROUND_RADIUS (200.0)
@@ -49,10 +49,9 @@ enum Component_tag{
 	NO_COMP_TAG,
 	FOV,
 	FOH,
-	GHOST_BEH,
 	MOVE,
 	PLAYER,
-	SPRITE
+	SPRITE 
 };
 
 enum Ghost_state {

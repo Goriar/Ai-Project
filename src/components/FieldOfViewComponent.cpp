@@ -44,6 +44,7 @@ void FieldOfViewComponent::update(double deltaTime)
 	}
 	
 }
+
 void FieldOfViewComponent::draw()
 {
 	Character *player = CharacterManager::instance()->getCharacter("Player");
@@ -57,7 +58,7 @@ void FieldOfViewComponent::draw()
 	glPushMatrix();
 	glTranslated(position[0],position[1],0.0);
 
-	glColor4f(1.0,1.0,1.0, 0.8);
+	glColor4f(1.0f,1.0f,1.0f, 0.8f);
 	glDisable(GL_TEXTURE_2D);
 	glBegin(GL_TRIANGLES);
 	glVertex2d(0.0,0.0);
@@ -104,21 +105,6 @@ void FieldOfViewComponent::draw()
 			CVector v4 = CVector(p[0]+size,p[1]-size);
 
 			bool hided = false;
-
-			///////// GHOSTS ARE INVISIBLE IN FOH ---> BUG? /////////
-			//if (c->getTag() == GHOST_TAG) {
-			//	vector<Character *> nearbyCharacters = parent->getCharacterManager()->getAllNearbyCharacters(parent->getPosition(),OBSTACLE_TAG,MAX_VIEW_FIELD_LENGTH+50.0);
-			//	vector<Character *>::iterator it = nearbyCharacters.begin();
-			//	while(it!=nearbyCharacters.end()){
-			//		Character *ob = (*it);
-			//		it++;
-			//		FieldOfHideComponent *hide = getComponent<FieldOfHideComponent>(ob);
-			//		if(hide->ghostInPolygon(v1,v2,v3,v4)) {
-			//			hided = true;
-			//		}
-			//	}
-			//}
-			//if(hided) continue;
 			
 			if(pointInView(v1)||pointInView(v2)||pointInView(v3)||pointInView(v4)/* || (dist - player->getPosition()).getLength() < VISIBLE_CIRCLE_RADIUS*/  ){
 				parent->getCharacterManager()->addDrawingCharacter(c);

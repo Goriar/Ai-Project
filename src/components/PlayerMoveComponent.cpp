@@ -26,6 +26,8 @@ PlayerMoveComponent::PlayerMoveComponent(bool *keys,Character *c)
 	health = 100.0f;
 	attachToCharacter(c);
 	active = true;
+
+	playerSize =  c->getSize()/2;
 }
 
 
@@ -56,21 +58,22 @@ void PlayerMoveComponent::update(double deltaTime)
 	if (rotation > 360.0) rotation  -= 360.0;
 	if (rotation < -360.0) rotation += 360.0;
 
-	if (position[0] > 1024) {
-		position[0] = 1024;
-		velocity[0] *= -1.0;
+
+	if (position[0] + playerSize > 1024) {
+		position[0] = 1024 - playerSize;
+		velocity[0] *= -0.2;
 	}
-	if (position[0] < 0) {
-		position[0] = 0;
-		velocity[0] *= -1.0;
+	if (position[0] < 0 + playerSize) {
+		position[0] = 0 + playerSize;
+		velocity[0] *= -0.2;
 	}
-	if (position[1] > 800) {
-		position[1] = 800;
-		velocity[1] *= -1.0;
+	if (position[1] + playerSize + 20 > 800) {
+		position[1] = 800 - playerSize - 20;
+		velocity[1] *= -0.2;
 	}
-	if (position[1] < 0) {
-		position[1] = 0;
-		velocity[1] *= -1.0;
+	if (position[1] < 0 + playerSize + 10) {
+		position[1] = 0 + playerSize + 10;
+		velocity[1] *= -0.2;
 	}
 
 	parent->setPosition(position);
@@ -80,7 +83,7 @@ void PlayerMoveComponent::update(double deltaTime)
 	
 	Character *item = CharacterManager::instance()->getCharacter("Item");
 	ItemComponent *itemComp = getComponent<ItemComponent>(item);
-	if((item->getPosition()-getPosition()).getLength() < 30.0f){
+	if((item->getPosition()-getPosition()).getLength() < 50.0f){
 		itemComp->pickUp();
 		score++;
 	}

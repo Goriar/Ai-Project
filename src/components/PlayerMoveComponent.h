@@ -58,4 +58,6 @@ protected:
 
 	int score;
 	float health;
+
+	float playerSize;
 };

@@ -5,7 +5,6 @@
 
 #include "steering\Wander.h"
 #include "steering\Idle.h"
-#include "steering\Patrol.h"
 #include "steering\ObstacleAvoidance.h"
 
 #include "assert.h"

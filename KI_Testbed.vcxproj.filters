@@ -52,9 +52,6 @@
     <ClCompile Include="src\steering\LookWhereYoureGoing.cpp">
       <Filter>steering</Filter>
     </ClCompile>
-    <ClCompile Include="src\steering\Patrol.cpp">
-      <Filter>steering</Filter>
-    </ClCompile>
     <ClCompile Include="src\steering\Wander.cpp">
       <Filter>steering</Filter>
     </ClCompile>
@@ -62,12 +59,6 @@
       <Filter>components</Filter>
     </ClCompile>
     <ClCompile Include="src\steering\Seek.cpp">
-      <Filter>steering</Filter>
-    </ClCompile>
-    <ClCompile Include="src\steering\Idle.cpp">
-      <Filter>steering</Filter>
-    </ClCompile>
-    <ClCompile Include="src\steering\Flee.cpp">
       <Filter>steering</Filter>
     </ClCompile>
     <ClCompile Include="src\tasks\TaskHideFromPlayer.cpp">
@@ -162,9 +153,6 @@
     <ClInclude Include="src\steering\LookWhereYoureGoing.h">
       <Filter>steering</Filter>
     </ClInclude>
-    <ClInclude Include="src\steering\Patrol.h">
-      <Filter>steering</Filter>
-    </ClInclude>
     <ClInclude Include="src\steering\Wander.h">
       <Filter>steering</Filter>
     </ClInclude>
@@ -172,12 +160,6 @@
       <Filter>components</Filter>
     </ClInclude>
     <ClInclude Include="src\steering\Seek.h">
-      <Filter>steering</Filter>
-    </ClInclude>
-    <ClInclude Include="src\steering\Idle.h">
-      <Filter>steering</Filter>
-    </ClInclude>
-    <ClInclude Include="src\steering\Flee.h">
       <Filter>steering</Filter>
     </ClInclude>
     <ClInclude Include="src\tasks\TaskHideFromPlayer.h">

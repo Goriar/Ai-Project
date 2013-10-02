@@ -31,6 +31,7 @@ void ItemComponent::update(double deltaTime){
 		pickedUp = false;
 	}
 }
+
 void ItemComponent::draw(){
 
 }

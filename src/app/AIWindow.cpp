@@ -20,9 +20,7 @@
 
 #include "steering\LookWhereYoureGoing.h"
 #include "steering\Wander.h"
-#include "steering\Flee.h"
 #include "steering\Seek.h"
-#include "steering\Idle.h"
 
 #include "tasks\TaskHideFromPlayer.h"
 #include "tasks\TaskPursuePlayer.h"
@@ -80,7 +78,6 @@ AIWindow::AIWindow()
 
 AIWindow::~AIWindow(void)
 {
-	
 }
 
 void AIWindow::createPlayer(){

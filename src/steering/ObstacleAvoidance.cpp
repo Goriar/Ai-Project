@@ -12,8 +12,6 @@ ObstacleAvoidance::ObstacleAvoidance(Character *target) {
 
 void ObstacleAvoidance::apply(MoveComponent *self) {
 
-	//////////////////SEEK BEHAVIOUR/////////////////////////
-
 	CVector currentPosition = self->getPosition();
 	CVector currentVelocity = self->getVelocity();
 
@@ -118,38 +116,4 @@ void ObstacleAvoidance::avoideObstacles(MoveComponent *self, bool avoid_player)
 
 void ObstacleAvoidance::debugDraw(MoveComponent *mc)
 {
-	/*double box_length = MIN_BOX_LENGTH + (mc->getVelocity().getLength()/mc->getMaxVelocity()) * MIN_BOX_LENGTH;
-
-	CVector pos = mc->getPosition();
-
-	double r = 20.0f;
-	double rot = DEG_TO_RAD(mc->getRotation());
-	double x1 = 0.0f * cosf(rot) - r * sinf(rot);
-	double y1 = r * cosf(rot) + 0.0f * sinf(rot);
-
-	double x2 = 0.0f * cosf(rot) - (-r) * sinf(rot);
-	double y2 = -r * cosf(rot) + 0.0f * sinf(rot);
-
-	CVector velocity = mc->getVelocity();
-	//velocity[0] += min_box_length;
-	//velocity[1] += min_box_length;
-
-	// draw rectangle 
-	glColor3f(0.0,0.0,0.0);
-
-
-	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
-	glTranslated(pos[0],pos[1],0.0);
-	glDisable(GL_TEXTURE_2D);
-
-	glBegin(GL_LINE_STRIP);
-		glVertex2d( x1, y1 );
-		glVertex2d( x1 + velocity[0], y1 + velocity[1]);
-		glVertex2d( x2 + velocity[0], y2 + velocity[1]);
-		glVertex2d( x2, y2);
-	glEnd();
-
-	glPopMatrix();*/
-
 }
