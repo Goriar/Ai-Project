@@ -15,7 +15,6 @@ public:
 	virtual ~FieldOfHideComponent(void);
 	virtual void update(double deltaTime);
 	virtual void draw();
-	bool ghostInPolygon(CVector ve1, CVector ve2, CVector ve3, CVector ve4);
 	CVector getCenterPosition();
 protected: 
 	CVector foh;
@@ -23,6 +22,6 @@ protected:
 
 	CharacterManager *characterManager;
 	bool pointInPolygon(CVector v,CVector s, CVector e);
-	//Ecken des Field of Hide
+	//Vertices of the Field of Hide
 	CVector v1, v2, v3, v4;
 };

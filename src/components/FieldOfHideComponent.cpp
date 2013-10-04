@@ -15,11 +15,10 @@ FieldOfHideComponent::~FieldOfHideComponent(void) {
 }
 
 void FieldOfHideComponent::update(double deltaTime) {
-		
+	//Scale Field of Hide	
 	foh = (-1)*(player->getPosition() - parent->getPosition());
 	double scale = MAX_HIDE_FIELD_LENGTH/foh.getLength();
 	foh = foh*scale;
-	
 }
 
 void FieldOfHideComponent::draw() {
@@ -28,12 +27,12 @@ void FieldOfHideComponent::draw() {
 
 	CVector position = parent->getPosition();
 	double rotation = parent->getRotation();
-	
+	//calculate vectors
 	v1 = foh - CVector(-foh[1],foh[0])*M_PI/3;
 	v2 = foh - CVector(foh[1],-foh[0])*M_PI/3;
 	v3;
 	v4;
-
+	//calculate vectors on the Edges of the Obstacle
 	if (player->getPosition()[1] >= parent->getPosition()[1]+parent->getSize()) {
 		if (player->getPosition()[0] >= parent->getPosition()[0]+parent->getSize()) {
 			v3[0] = 0.0+parent->getSize();
@@ -80,6 +79,7 @@ void FieldOfHideComponent::draw() {
 			v4[0] = 0.0-parent->getSize();
 			v4[1] = 0.0-parent->getSize();
 		} else {
+			//should never happen
 			v3[0] = 0.0;
 			v3[1] = 0.0;
 			v4[0] = 0.0;
@@ -100,7 +100,7 @@ void FieldOfHideComponent::draw() {
 	{
 		glColor3f(0.0,0.0,0.0);
 	}
-
+	//Draw Polygon
 	glDisable(GL_TEXTURE_2D);
 	glBegin(GL_POLYGON);
 	glVertex2d(v3[0],v3[1]);

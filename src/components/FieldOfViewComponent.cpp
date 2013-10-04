@@ -88,8 +88,8 @@ void FieldOfViewComponent::draw()
 
 
 	glColor4d(1.0,1.0,1.0,1.0);
-
 	if (!debug) {
+		//get nearby Characters, to draw them
 		vector<Character *> nearbyCharacters = parent->getCharacterManager()->getNearbyCharacters(parent->getPosition(),MAX_VIEW_FIELD_LENGTH+50.0);
 		vector<Character *>::iterator it = nearbyCharacters.begin();
 
@@ -108,7 +108,7 @@ void FieldOfViewComponent::draw()
 			CVector v4 = CVector(p[0]+size,p[1]-size);
 
 			bool hided = false;
-			
+			//check their position
 			if(pointInView(v1)||pointInView(v2)||pointInView(v3)||pointInView(v4)/* || (dist - player->getPosition()).getLength() < VISIBLE_CIRCLE_RADIUS*/  ){
 				parent->getCharacterManager()->addDrawingCharacter(c);
 			}

@@ -112,6 +112,7 @@ void AIWindow::createItem(){
 }
 
 void AIWindow::createObstacle(){
+	//obstacle
 	CharacterManager *cm = CharacterManager::instance();
 	double x = 0.0;
 	double y = 0.0;
@@ -121,7 +122,7 @@ void AIWindow::createObstacle(){
 		sstr << "Obstacle" << i;
 		string obsName = sstr.str();
 		obstacles[i] = cm->createCharacter(obsName,OBSTACLE_TAG);
-		
+		//generate random spawn point
 		x = rand()%nWidth;
 		y = rand()%nHeight;
 		obstacles[i]->setPosition(CVector(x,y));
@@ -132,7 +133,7 @@ void AIWindow::createObstacle(){
 				obstacles[i]->setPosition(CVector(x,y));
 			}
 		}
-
+		//add FoH and Sprinte Components
 		FieldOfHideComponent *fohComponent = new FieldOfHideComponent(player, cm,obstacles[i]);
 
 		Sprite *sp = new Sprite("..\\input\\wall.png");
