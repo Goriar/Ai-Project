@@ -38,20 +38,21 @@ void TaskHideFromPlayer::activate()
 
 void TaskHideFromPlayer::run(double deltaTime)
 {
+	//Prüft ob der Spieler nah genug am Gegner ist um Lebenspunkte zu verlieren
 	Character *player = CharacterManager::instance()->getCharacter("Player");
 	if((character->getPosition() - player->getPosition()).getLength() <= GHOST_PLAYER_DIST)
 	{
-		// Player dies
 		PlayerMoveComponent *movComp = getComponent<PlayerMoveComponent>(player);
 		movComp->loseHealth(1);
 	}
 
+	//Wenn er sich in einem Versteck befindet wechselt er wieder ins nächste Behaviour
 	hideBehaviour->retarget(foh->getCenterPosition());
 	if((character->getPosition()-foh->getCenterPosition()).getLength() < 20.0){
 		deactivate();
 		parent->childTerminated(this,true);
 	}
-
+	//Er wechselt ebenso, wenn der Spieler weit genug weg ist
 	if((character->getPosition() - player->getPosition()).getLength() >= MAX_VIEW_FIELD_LENGTH)
 	{
 		deactivate();

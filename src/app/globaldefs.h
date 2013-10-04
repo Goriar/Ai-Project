@@ -27,9 +27,12 @@
 #define MIN_ENERGY (5.0)
 
 #define NUMBER_OF_OBSTACLES (5)
+
 #define NUMBER_OF_GHOSTS_TYPE1 (4)
 #define NUMBER_OF_GHOSTS_TYPE2 (2)
 #define GHOST_PLAYER_DIST (25.0)
+
+
 
 #define SURROUND_RADIUS (200.0)
 

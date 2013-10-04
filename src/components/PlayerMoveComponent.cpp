@@ -37,6 +37,7 @@ PlayerMoveComponent::~PlayerMoveComponent(void)
 
 void PlayerMoveComponent::update(double deltaTime)
 {
+	//Prüft die Tastatureingabe und berechnet mit der Beschleunigung die Geschwindigkeit
 	determineDirection();
 	velocity += deltaTime * accel;
 	if (velocity.getLength() > maxVelocity) {
@@ -45,9 +46,9 @@ void PlayerMoveComponent::update(double deltaTime)
 	}
 
 	CVector position = parent->getPosition();
-	double rotation = parent->getRotation();
 
 	position += PIXEL_PER_METER *deltaTime * velocity;
+
 
 	angularVelo += deltaTime * angularAccel;
 	if (abs(angularVelo) > maxAngularVelocity) {
@@ -58,10 +59,12 @@ void PlayerMoveComponent::update(double deltaTime)
 	if (rotation > 360.0) rotation  -= 360.0;
 	if (rotation < -360.0) rotation += 360.0;
 
-
+//Prüfen ob der Spieler aus dem Bild laufen würde
 	if (position[0] + playerSize > 1024) {
 		position[0] = 1024 - playerSize;
 		velocity[0] *= -0.2;
+	
+
 	}
 	if (position[0] < 0 + playerSize) {
 		position[0] = 0 + playerSize;
@@ -77,10 +80,11 @@ void PlayerMoveComponent::update(double deltaTime)
 	}
 
 	parent->setPosition(position);
-	parent->setRotation(rotation);
 
+	//Kollisionsabfrage
 	quadColission();
 	
+	//Prüfen ob der Spieler einen Gegenstand aufnehmen würde
 	Character *item = CharacterManager::instance()->getCharacter("Item");
 	ItemComponent *itemComp = getComponent<ItemComponent>(item);
 	if((item->getPosition()-getPosition()).getLength() < 50.0f){
@@ -89,16 +93,20 @@ void PlayerMoveComponent::update(double deltaTime)
 	}
 }
 
+//Mittels des Seperating Axis Theorem wird auf eine Kolission mit den Hindernissen geprüft
 void PlayerMoveComponent::quadColission()
 {
+
 	CVector position = getPosition();
 	double size = parent->getSize();
 
+	//Die Eckpunkte des Spielers
 	CVector v1 = CVector(position[0]-size,position[1]+size);
 	CVector v2 = CVector(position[0]+size,position[1]+size);
 	CVector v3 = CVector(position[0]+size,position[1]-size);
 	CVector v4 = CVector(position[0]-size,position[1]-size);
 
+	//Die zu prüfenden Achsen werden mit Hilfe der Vektoren der Spielerposition erstellt
 
 	CVector a1 = v1 - v2;
 	a1 = CVector(a1[1],-a1[0]);
@@ -131,7 +139,7 @@ void PlayerMoveComponent::quadColission()
 		CVector cPos = c->getPosition()-position;
 		double cSize = c->getSize();
 
-	
+		//Die Eckpunkte eines Obstacles
 		CVector w1 = CVector(cPos[0]-cSize,cPos[1]+cSize);
 		CVector w2 = CVector(cPos[0]+cSize,cPos[1]+cSize);
 		CVector w3 = CVector(cPos[0]+cSize,cPos[1]-cSize);
@@ -141,6 +149,7 @@ void PlayerMoveComponent::quadColission()
 
 		CVector moveVector = CVector(9999999,9999999); 
 
+		//Die Punkte werden auf eine Achse projiziert. Anschließend werden die Maxima und Minima miteinander verglichen
 		for(int i = 0; i<4; ++i){
 			CVector maxV = CVector();
 			CVector minV = CVector();
@@ -173,6 +182,7 @@ void PlayerMoveComponent::quadColission()
 				
 			}
 
+			//Der Vektor in dessen Richtung der Spieler abgestoßen wird,wird berechnet...
 			if((maxV[0]>=minW[0] && maxV[1]>=minW[1])&& (minV[0] <= maxW[0] && minV[1] <= maxW[1])){
 				CVector vec = (maxV - minW).getLength() < (minV - maxW).getLength() ? maxV-minW : minV - maxW;
 				if(moveVector.getLength() > vec.getLength()){
@@ -186,6 +196,7 @@ void PlayerMoveComponent::quadColission()
 
 		}
 
+		//...und auf die Position des Spielers übertragen
 		if(!moveVector.isNil()){
 			position-=moveVector;
 			moveVector.normalize();
@@ -198,7 +209,7 @@ void PlayerMoveComponent::quadColission()
 }
 
 void PlayerMoveComponent::determineDirection(){
-	
+	//Je nach dem welche Taste eingegeben wurde wird mit maximaler Beschleunigung in die zugwiesene Richtung beschleunigt
 	if(keyStates['w'] || keyStates['W']){
 		if(keyStates['a'] || keyStates['A'])
 			setAccel(CVector(-MAX_ACCEL,MAX_ACCEL));
@@ -235,6 +246,7 @@ void PlayerMoveComponent::determineDirection(){
 		return;
 	}
 
+	//Wenn nichts gedrückt wurde, kommt der Spieler langsam zum stehen
 	if(velocity!=CVector(0,0)){
 		float x = 0.0;
 		float y = 0.0;

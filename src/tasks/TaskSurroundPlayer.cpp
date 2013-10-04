@@ -66,6 +66,7 @@ void TaskSurroundPlayer::calculateTargetPosition()
 		targetPosition = CVector();
 		return;
 	}
+	//Ein Raycast wir auf einen Kreis in einem festelegten Radius um den Spieler herum geschickt
 	CVector closestAlly = ally->getPosition();
 	CVector d = player->getPosition() - closestAlly;
 	d.normalize();
@@ -79,11 +80,12 @@ void TaskSurroundPlayer::calculateTargetPosition()
 
 	CVector t = (closestAlly - (closestAlly + delta1*d)).getLength() < (closestAlly - (closestAlly + delta2*d)).getLength() ? closestAlly + delta1*d : closestAlly + delta2*d;
 
-	//cout << closestAlly[0] << " " << closestAlly[1] << " " << CharacterManager::instance()->getNearestCharacter(character->getPosition(),GHOST_TAG,80.0)->getName() << endl;
 	MoveComponent *mov = getComponent<MoveComponent>(ally);
 	CVector velo = mov->getVelocity();
 	velo.normalize();
 
+	//Anschließend wird ein Winkel zur Position auf dem Kreis hinzu grechnet
+	//Je nachdem in welche Richtung der Partner geht
 	targetPosition = t - player->getPosition();
 	if((velo-character->getPosition()).getLength()>=((velo+CVector(-velo[1],velo[0]))-character->getPosition()).getLength()){
 		targetPosition[0] += (SURROUND_RADIUS * cos(90.0));

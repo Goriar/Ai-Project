@@ -46,7 +46,7 @@ void TaskWaitForAction::run(double deltaTime)
 
 	// Other Ghost reacts if its in fov
 
-
+	//Wenn er gesehen wird, geht er auf den Character los
 	if( fov->isCharacterSeen(character) )
 	{
 		deactivate();
@@ -54,6 +54,7 @@ void TaskWaitForAction::run(double deltaTime)
 		return;
 	}
 
+	//Prüft ob der Spieler nah genug dran ist um Leben zu verlieren
 	Character *player = CharacterManager::instance()->getCharacter("Player");
 	if((character->getPosition() - player->getPosition()).getLength() <= GHOST_PLAYER_DIST)
 	{

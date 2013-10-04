@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>KI Testbed</ProjectName>
+    <ProjectName>KI Projekt</ProjectName>
     <ProjectGuid>{AA83884D-A36B-424B-B00E-16CFF9D26E3C}</ProjectGuid>
     <RootNamespace>KI_Testbed</RootNamespace>
     <Keyword>Win32Proj</Keyword>

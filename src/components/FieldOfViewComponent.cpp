@@ -28,6 +28,7 @@ void FieldOfViewComponent::update(double deltaTime)
 	vector<Character *>::iterator it = nearbyCharacters.begin();
 
 	seenEnemies.clear();
+	//Es wird überprüft ob sich ein Gegner im Field of View befindet
 	while(it!=nearbyCharacters.end()){
 		Character *c = (*it);
 		it++;
@@ -45,6 +46,9 @@ void FieldOfViewComponent::update(double deltaTime)
 	
 }
 
+
+//Das Sichtfeld und ein Radius um den Spieler herum werden gezeichnet
+
 void FieldOfViewComponent::draw()
 {
 	Character *player = CharacterManager::instance()->getCharacter("Player");
@@ -53,7 +57,6 @@ void FieldOfViewComponent::draw()
 
 	CVector v1 = fov - CVector(-fov[1],fov[0])*M_PI/6;
 	CVector v2 = fov - CVector(fov[1],-fov[0])*M_PI/6;
-
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 	glTranslated(position[0],position[1],0.0);
@@ -125,7 +128,7 @@ void FieldOfViewComponent::draw()
 
 }
 
-
+//Prüft mittels des Edge Side Test ob ein Punkt im Dreieck liegt(Funktioniert nur für Dreiecke)
 bool FieldOfViewComponent::pointInView(CVector p)
 {
 	CVector3 point = CVector3(p[0],p[1],0.0);
@@ -144,6 +147,7 @@ bool FieldOfViewComponent::pointInView(CVector p)
 		return false;
 }
 
+//Es wird geprüft auf welcher Seite einer Edge ein Punkt liegt. Die berechnete Normale zeigt aus dem Bidlschirm heraus falls er im Dreieck liegt und in den Bildschirm hinein wenn nicht
 bool FieldOfViewComponent::edgeSideTest(CVector3 p1,CVector3 p2, CVector3 a, CVector3 b)
 {
 	CVector3 cp1 = cp1.crossProduct(b-a,p1-a);
@@ -154,6 +158,7 @@ bool FieldOfViewComponent::edgeSideTest(CVector3 p1,CVector3 p2, CVector3 a, CVe
 		return false;
 }
 
+//Prüft für einen Character ob er gesehen wird
 bool FieldOfViewComponent::isCharacterSeen(Character *c)
 {
 	vector<Character*>::iterator it = seenEnemies.begin();

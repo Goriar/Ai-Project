@@ -37,12 +37,14 @@ void TaskPursuePlayer::activate()
 
 void TaskPursuePlayer::run(double deltaTime)
 {
+	//Prüft ob der Spieler nah genug am Gegner ist um Lebenspunkte zu verlieren
 	if((character->getPosition() - player->getPosition()).getLength() <= GHOST_PLAYER_DIST)
 	{
-		// Player dies
 		PlayerMoveComponent *movComp = getComponent<PlayerMoveComponent>(player);
 		movComp->loseHealth(1);
 	}
+
+	//Wenn der Gegner weit vom Spieler entfernt ist wechselt er ins Surround Behaviour
 	if((character->getPosition() - player->getPosition()).getLength() >= SURROUND_RADIUS)
 	{
 		deactivate();
@@ -50,6 +52,7 @@ void TaskPursuePlayer::run(double deltaTime)
 		return;
 	}
 
+	//Wenn er gesehen wird versteckt er sich
 	if(fov->isCharacterSeen(character)){
 		deactivate();
 		parent->childTerminated(this,false);

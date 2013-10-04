@@ -40,14 +40,15 @@ void TaskRunInto::activate()
 
 void TaskRunInto::run(double deltaTime)
 {
+	//Prüft ob der Spieler nah genug am Gegner ist um Lebenspunkte zu verlieren
 	Character *player = CharacterManager::instance()->getCharacter("Player");
 	if((character->getPosition() - player->getPosition()).getLength() <= GHOST_PLAYER_DIST)
 	{
-		// Player dies
 		PlayerMoveComponent *movComp = getComponent<PlayerMoveComponent>(player);
 		movComp->loseHealth(5);
 	}
 
+	//Wenn er nicht gesehen wir wechselt er ins WaitForAction Behaviour
 	if( !fov->isCharacterSeen(character) )
 	{
 		deactivate();

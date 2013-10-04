@@ -17,6 +17,8 @@ ItemComponent::~ItemComponent(void)
 {
 }
 
+
+//Prüft ob der Gegegnstand aufgehoben wurde und spawnt ihn neu
 void ItemComponent::update(double deltaTime){
 	if(pickedUp){
 		srand (time(NULL));
