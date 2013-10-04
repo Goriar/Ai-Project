@@ -11,6 +11,8 @@
 
 using namespace BehaviourTree;
 
+
+// Behaviour wodurch der Geist in Richtung des Spielers fliegt wenn er angesehen wird
 TaskRunInto::TaskRunInto(Behaviour *b, ParentNode *p, Character *c)
 {
 	behaviour = b;

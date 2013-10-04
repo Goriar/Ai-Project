@@ -46,6 +46,7 @@ void PlayerMoveComponent::update(double deltaTime)
 	}
 
 	CVector position = parent->getPosition();
+	double rotation = parent->getRotation();
 
 	position += PIXEL_PER_METER *deltaTime * velocity;
 

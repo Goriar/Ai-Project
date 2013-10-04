@@ -36,15 +36,7 @@ void TaskWaitForAction::activate()
 
 void TaskWaitForAction::run(double deltaTime)
 {
-	// Normal Ghosts, with a circle
-	//if( (character->getPosition() - player->getPosition()).getLength() < GHOST_ATTENTION_RADIUS )
-	//{
-	//	deactivate();
-	//	parent->childTerminated(this,true);
-	//	return;
-	//}
-
-	// Other Ghost reacts if its in fov
+	// Glotz Ghost reacts if its in fov
 
 	//Wenn er gesehen wird, geht er auf den Character los
 	if( fov->isCharacterSeen(character) )

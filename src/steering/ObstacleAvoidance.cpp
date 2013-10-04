@@ -32,7 +32,6 @@ void ObstacleAvoidance::avoideObstacles(MoveComponent *self, bool avoid_player)
 	const float NEARBY_OBSTACLE_DISTANCE = 300.0f;
 	const float MAX_AVOIDANCE_FORCE = 2000.0f;
 
-	//cout << "v: " << self->getVelocity().getLength() << endl;
 
 	CVector velocity = self->getVelocity();
 	CVector ghostPosition = self->getPosition();
